@@ -22,11 +22,11 @@ const TagihanPage = () => {
 
     fetchData();
   }, []);
+  console.log(tagihanData);
 
   return (
     <div className="w-full text-sm overflow-x-hidden">
       <div className="font-medium text-3xl pt-10 px-8">Tagihan</div>
-      <Button className="bg-gray-400 ml-8 mt-3">Tambah Data</Button>
       <div className="mt-10 mx-8">
         <table className="w-full border-collapse text-center">
           <thead>
@@ -37,7 +37,7 @@ const TagihanPage = () => {
               <th>Tahun</th>
               <th>Jumlah Meter</th>
               <th>Status</th>
-              <th>Action</th>
+              {/* <th>Action</th> */}
             </tr>
           </thead>
           <tbody className="">
@@ -49,11 +49,17 @@ const TagihanPage = () => {
                   <td className="py-5">{item.bulan}</td>
                   <td className="py-5">{item.tahun}</td>
                   <td className="py-5">{item.jumlah_meter}</td>
-                  <td className="py-5">{item.status} kWh</td>
-                  <td className="flex justify-evenly items-center py-5">
+                  <td className="py-5">
+                    {item.status ? (
+                      <Button className="bg-green-600">Sudah dibayar</Button>
+                    ) : (
+                      <Button className="bg-red-600">Belum Dibayar</Button>
+                    )}
+                  </td>
+                  {/* <td className="flex justify-evenly items-center py-5">
                     <Button className="bg-green-700">Edit</Button>
                     <Button className="bg-red-600">Delete</Button>
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}

@@ -10,6 +10,10 @@ import TambahPelanggan from "./pages/TambahData/TambahPelanggan.jsx";
 import EditPelanggan from "./pages/EditData/EditPelanggan.jsx";
 import TambahTarif from "./pages/TambahData/TambahTarif.jsx";
 import EditTarif from "./pages/EditData/EditTarif.jsx";
+import PenggunaanPage from "./pages/TampilData/PenggunaanPage.jsx";
+import TambahPenggunaan from "./pages/TambahData/TambahPenggunaan.jsx";
+import EditPenggunaan from "./pages/EditData/EditPenggunaan.jsx";
+import TagihanPage from "./pages/TampilData/TagihanPage.jsx";
 
 const App = () => {
   return (
@@ -53,6 +57,22 @@ const App = () => {
           <Route
             path="/edittarif/:tarifId"
             element={<Dashboard component={<EditTarif />} />}
+          />
+          <Route
+            path="/penggunaan"
+            element={<Dashboard component={<PenggunaanPage />} />}
+          />
+          <Route
+            path="/tambahpenggunaan"
+            element={<Dashboard component={<TambahPenggunaan />} />}
+          />
+          <Route
+            path="/editpenggunaan/:penggunaanId"
+            element={<Dashboard component={<EditPenggunaan />} />}
+          />
+          <Route
+            path="/tagihan"
+            element={<Dashboard component={<TagihanPage />} />}
           />
         </Routes>
       </BrowserRouter>
