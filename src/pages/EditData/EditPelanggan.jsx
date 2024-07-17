@@ -109,7 +109,7 @@ const EditPelanggan = () => {
               />
             </div>
             <div className="grid grid-cols-2">
-              <label>Masukkan Nomor kWh:</label>
+              <label>Masukkan Nomor Meter:</label>
               <input
                 type="text"
                 value={nomorKwh}

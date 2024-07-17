@@ -14,6 +14,8 @@ import PenggunaanPage from "./pages/TampilData/PenggunaanPage.jsx";
 import TambahPenggunaan from "./pages/TambahData/TambahPenggunaan.jsx";
 import EditPenggunaan from "./pages/EditData/EditPenggunaan.jsx";
 import TagihanPage from "./pages/TampilData/TagihanPage.jsx";
+import DetailPenggunaan from "./pages/TampilData/DetailPenggunaan.jsx";
+import PembayaranPage from "./pages/TampilData/PembayaranPage.jsx";
 
 const App = () => {
   return (
@@ -71,8 +73,20 @@ const App = () => {
             element={<Dashboard component={<EditPenggunaan />} />}
           />
           <Route
-            path="/tagihan"
+            path="/tagihanpelanggan/:pelangganId"
             element={<Dashboard component={<TagihanPage />} />}
+          />
+          <Route
+            path="/tagihan/:pelangganId"
+            element={<Dashboard component={<TagihanPage />} />}
+          />
+          <Route
+            path="/detailpenggunaan/:pelangganId"
+            element={<Dashboard component={<DetailPenggunaan />} />}
+          />
+          <Route
+            path="/pembayaran"
+            element={<Dashboard component={<PembayaranPage />} />}
           />
         </Routes>
       </BrowserRouter>

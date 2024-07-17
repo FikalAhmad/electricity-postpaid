@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
 
-const PelangganPage = () => {
-  const [pelangganData, setPelangganData] = useState([]);
+const PembayaranPage = () => {
+  const [tarifData, setTarifData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/pelanggan", {
+      const response = await fetch("http://localhost:3000/tarif", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -19,14 +19,14 @@ const PelangganPage = () => {
       }
 
       const json = await response.json();
-      setPelangganData(json);
+      setTarifData(json);
     };
 
     fetchData();
   }, []);
 
-  const handleDelete = async (pelangganId) => {
-    await fetch(`http://localhost:3000/pelanggan/${pelangganId}`, {
+  const handleDelete = async (tarifId) => {
+    await fetch(`http://localhost:3000/tarif/${tarifId}`, {
       method: "DELETE",
     });
     await location.reload();
@@ -34,10 +34,10 @@ const PelangganPage = () => {
 
   return (
     <div className="w-full text-sm overflow-x-hidden">
-      <div className="font-medium text-3xl pt-10 px-8">Pembayaran</div>
+      <div className="font-medium text-3xl pt-10 px-8">Tarif</div>
       <Button
         className="bg-gray-400 ml-8 mt-3"
-        onClick={() => navigate("/tambahpelanggan")}
+        onClick={() => navigate("/tambahtarif")}
       >
         Tambah Data
       </Button>
@@ -46,36 +46,28 @@ const PelangganPage = () => {
           <thead>
             <tr className="border-b-2">
               <th>No</th>
-              <th>Username</th>
-              <th>No. Meter</th>
-              <th>Nama Admin</th>
-              <th>Alamat</th>
-              <th>Tarif</th>
+              <th>Daya</th>
+              <th>Tarif/kWh</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody className="">
-            {pelangganData.map((item, index) => {
+            {tarifData.map((item, index) => {
               return (
                 <tr key={index + 1} className="border-b-2">
                   <td className="py-5">{index + 1}</td>
-                  <td className="py-5">{item.username}</td>
-                  <td className="py-5">{item.nomor_kwh}</td>
-                  <td className="py-5">{item.nama_pelanggan}</td>
-                  <td className="py-5">{item.alamat}</td>
-                  <td className="py-5">{item.tarif.daya}VA</td>
+                  <td className="py-5">{item.daya}VA</td>
+                  <td className="py-5">Rp. {item.tarifperkwh}</td>
                   <td className="flex justify-evenly items-center py-5">
                     <Button
                       className="bg-green-700"
-                      onClick={() =>
-                        navigate(`/editpelanggan/${item.id_pelanggan}`)
-                      }
+                      onClick={() => navigate(`/edittarif/${item.id_tarif}`)}
                     >
                       Edit
                     </Button>
                     <Button
                       className="bg-red-600"
-                      onClick={() => handleDelete(item.id_pelanggan)}
+                      onClick={() => handleDelete(item.id_tarif)}
                     >
                       Delete
                     </Button>
@@ -90,4 +82,4 @@ const PelangganPage = () => {
   );
 };
 
-export default PelangganPage;
+export default PembayaranPage;

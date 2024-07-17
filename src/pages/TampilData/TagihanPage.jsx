@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
+import { useParams } from "react-router-dom";
 
 const TagihanPage = () => {
+  const { pelangganId } = useParams();
   const [tagihanData, setTagihanData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/tagihan", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "GET",
-      });
+      const response = await fetch(
+        `http://localhost:3000/tagihanpelanggan/${pelangganId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "GET",
+        }
+      );
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
@@ -21,8 +26,13 @@ const TagihanPage = () => {
     };
 
     fetchData();
-  }, []);
-  console.log(tagihanData);
+  }, [pelangganId]);
+  const handleDelete = async (tagihanId) => {
+    await fetch(`http://localhost:3000/tagihan/${tagihanId}`, {
+      method: "DELETE",
+    });
+    await location.reload();
+  };
 
   return (
     <div className="w-full text-sm overflow-x-hidden">
@@ -32,12 +42,11 @@ const TagihanPage = () => {
           <thead>
             <tr className="border-b-2">
               <th>No</th>
-              <th>Nama Pelanggan</th>
               <th>Bulan</th>
               <th>Tahun</th>
               <th>Jumlah Meter</th>
               <th>Status</th>
-              {/* <th>Action</th> */}
+              <th>Action</th>
             </tr>
           </thead>
           <tbody className="">
@@ -45,16 +54,23 @@ const TagihanPage = () => {
               return (
                 <tr key={item.id} className="border-b-2">
                   <td className="py-5">{index + 1}</td>
-                  <td className="py-5">{item.pelanggan.nama_pelanggan}</td>
                   <td className="py-5">{item.bulan}</td>
                   <td className="py-5">{item.tahun}</td>
                   <td className="py-5">{item.jumlah_meter}</td>
                   <td className="py-5">
                     {item.status ? (
-                      <Button className="bg-green-600">Sudah dibayar</Button>
+                      <Button className="bg-green-700">Sudah dibayar</Button>
                     ) : (
                       <Button className="bg-red-600">Belum Dibayar</Button>
                     )}
+                  </td>
+                  <td>
+                    <Button
+                      className="bg-red-600"
+                      onClick={() => handleDelete(item.id_tagihan)}
+                    >
+                      Hapus
+                    </Button>
                   </td>
                   {/* <td className="flex justify-evenly items-center py-5">
                     <Button className="bg-green-700">Edit</Button>

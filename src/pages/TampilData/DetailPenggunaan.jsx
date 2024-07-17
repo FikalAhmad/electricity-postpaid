@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const PenggunaanPage = () => {
+const DetailPenggunaan = () => {
+  const { pelangganId } = useParams();
   const [penggunaanData, setPenggunaanData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/penggunaan", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "GET",
-      });
+      const response = await fetch(
+        `http://localhost:3000/detailpenggunaan/${pelangganId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "GET",
+        }
+      );
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
@@ -23,19 +27,28 @@ const PenggunaanPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [pelangganId]);
+
+  const handleDelete = async (penggunaanId) => {
+    await fetch(`http://localhost:3000/penggunaan/${penggunaanId}`, {
+      method: "DELETE",
+    });
+    await location.reload();
+  };
 
   return (
     <div className="w-full text-sm overflow-x-hidden">
-      <div className="font-medium text-3xl pt-10 px-8">Penggunaan</div>
+      <div className="font-medium text-3xl pt-10 px-8">Detail Penggunaan</div>
       <div className="mt-10 mx-8">
         <table className="w-full border-collapse text-center">
           <thead>
             <tr className="border-b-2">
               <th>No</th>
-              <th>Nama Pelanggan</th>
-              <th>No. Meter</th>
-              <th>Alamat</th>
+              <th>Bulan</th>
+              <th>Tahun</th>
+              <th>Meter Awal</th>
+              <th>Meter Akhir</th>
+              <th>Total Penggunaan</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -44,31 +57,25 @@ const PenggunaanPage = () => {
               return (
                 <tr key={index + 1} className="border-b-2">
                   <td className="py-5">{index + 1}</td>
-                  <td className="py-5">{item.pelanggan.nama_pelanggan}</td>
-                  <td className="py-5">{item.pelanggan.nomor_kwh}</td>
-                  <td className="py-5">{item.pelanggan.alamat}</td>
+                  <td className="py-5">{item.bulan}</td>
+                  <td className="py-5">{item.tahun}</td>
+                  <td className="py-5">{item.meter_awal}</td>
+                  <td className="py-5">{item.meter_akhir}</td>
+                  <td className="py-5">{item.tagihan.jumlah_meter} kWh</td>
                   <td className="flex justify-evenly items-center py-5">
                     <Button
-                      className="bg-gray-400"
-                      onClick={() => navigate(`/tambahpenggunaan`)}
-                    >
-                      Tambah Penggunaan
-                    </Button>
-                    <Button
                       className="bg-green-700"
                       onClick={() =>
-                        navigate(`/detailpenggunaan/${item.id_pelanggan}`)
+                        navigate(`/editpenggunaan/${item.id_penggunaan}`)
                       }
                     >
-                      Lihat Penggunaan
+                      Edit
                     </Button>
                     <Button
-                      className="bg-green-700"
-                      onClick={() =>
-                        navigate(`/tagihanpelanggan/${item.id_pelanggan}`)
-                      }
+                      className="bg-red-700"
+                      onClick={() => handleDelete(item.id_penggunaan)}
                     >
-                      Lihat Penggunaan
+                      Hapus
                     </Button>
                   </td>
                 </tr>
@@ -81,4 +88,4 @@ const PenggunaanPage = () => {
   );
 };
 
-export default PenggunaanPage;
+export default DetailPenggunaan;

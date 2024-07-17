@@ -33,14 +33,14 @@ const Sidebar = () => {
               Tarif
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/tagihan"
               className="bg-gray-900 text-white flex justify-center py-2 w-full"
             >
               Tagihan
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               to="/pembayaran"

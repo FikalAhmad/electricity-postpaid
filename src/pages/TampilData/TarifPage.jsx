@@ -47,7 +47,7 @@ const TarifPage = () => {
             <tr className="border-b-2">
               <th>No</th>
               <th>Daya</th>
-              <th>Tarif per kWh</th>
+              <th>Tarif/kWh</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -56,8 +56,8 @@ const TarifPage = () => {
               return (
                 <tr key={index + 1} className="border-b-2">
                   <td className="py-5">{index + 1}</td>
-                  <td className="py-5">{item.daya}</td>
-                  <td className="py-5">{item.tarifperkwh}</td>
+                  <td className="py-5">{item.daya}VA</td>
+                  <td className="py-5">Rp. {item.tarifperkwh}</td>
                   <td className="flex justify-evenly items-center py-5">
                     <Button
                       className="bg-green-700"
