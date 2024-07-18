@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
+import { EditIcon } from "../../components/Icons.jsx";
 
 const EditUser = () => {
   const { userId } = useParams();
@@ -51,7 +52,7 @@ const EditUser = () => {
   };
   return (
     <div className="w-full text-sm overflow-x-hidden">
-      <div className="font-medium text-3xl pt-10 px-8">Tambah User</div>
+      <div className="font-medium text-3xl pt-10 px-8">Edit Data User</div>
       <div className="mt-10 mx-8">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-3">
@@ -95,7 +96,11 @@ const EditUser = () => {
               </select>
             </div>
             <div className="flex justify-center gap-3 mt-5">
-              <Button className="bg-green-600" type="submit">
+              <Button
+                className="bg-green-700 flex gap-2 justify-center items-center"
+                type="submit"
+              >
+                <EditIcon />
                 Ubah
               </Button>
               <Button className="bg-red-600" onClick={() => navigate("/user")}>

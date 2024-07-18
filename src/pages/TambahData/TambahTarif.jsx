@@ -21,7 +21,7 @@ const TambahTarif = () => {
     });
     await navigate("/tarif");
   };
-  console.log(daya, tarifperkwh);
+
   return (
     <div className="w-full text-sm overflow-x-hidden">
       <div className="font-medium text-3xl pt-10 px-8">Tambah Tarif</div>
@@ -33,7 +33,7 @@ const TambahTarif = () => {
               <input
                 type="number"
                 value={daya}
-                onChange={(e) => setDaya(e.target.value)}
+                onChange={(e) => setDaya(e.target.valueAsNumber)}
                 className="border-2 rounded-md border-black py-2"
               />
             </div>
@@ -43,7 +43,7 @@ const TambahTarif = () => {
                 type="number"
                 step="0.01"
                 value={tarifperkwh}
-                onChange={(e) => setTarifperkwh(e.target.value)}
+                onChange={(e) => setTarifperkwh(e.target.valueAsNumber)}
                 className="border-2 rounded-md border-black py-2"
               />
             </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
+import { DeleteIcon, EditIcon, LeftArrow } from "../../components/Icons.jsx";
 
 const DetailPenggunaan = () => {
   const { pelangganId } = useParams();
@@ -37,11 +38,20 @@ const DetailPenggunaan = () => {
   };
 
   return (
-    <div className="w-full text-sm overflow-x-hidden">
-      <div className="font-medium text-3xl pt-10 px-8">Detail Penggunaan</div>
-      <div className="mt-10 mx-8">
+    <div className="text-sm bg-white m-5 rounded-md w-full relative overflow-hidden">
+      <Button
+        className="bg-gray-400 mt-10 ml-10 flex justify-center items-center gap-2"
+        onClick={() => navigate("/penggunaan")}
+      >
+        <LeftArrow />
+        Kembali
+      </Button>
+      <div className="font-semibold text-3xl pt-8 px-8">
+        Detail Data Penggunaan
+      </div>
+      <div className="m-10 h-[550px] overflow-x-hidden overflow-y-auto">
         <table className="w-full border-collapse text-center">
-          <thead>
+          <thead className="w-full bg-white">
             <tr className="border-b-2">
               <th>No</th>
               <th>Bulan</th>
@@ -62,19 +72,21 @@ const DetailPenggunaan = () => {
                   <td className="py-5">{item.meter_awal}</td>
                   <td className="py-5">{item.meter_akhir}</td>
                   <td className="py-5">{item.tagihan.jumlah_meter} kWh</td>
-                  <td className="flex justify-evenly items-center py-5">
+                  <td className="flex gap-5 justify-center items-center py-5">
                     <Button
-                      className="bg-green-700"
+                      className="bg-green-700 flex gap-2 justify-center items-center"
                       onClick={() =>
                         navigate(`/editpenggunaan/${item.id_penggunaan}`)
                       }
                     >
+                      <EditIcon />
                       Edit
                     </Button>
                     <Button
-                      className="bg-red-700"
+                      className="bg-red-700 flex gap-2 justify-center items-center"
                       onClick={() => handleDelete(item.id_penggunaan)}
                     >
+                      <DeleteIcon />
                       Hapus
                     </Button>
                   </td>

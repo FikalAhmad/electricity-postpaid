@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard.jsx";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import UserPage from "./pages/TampilData/UserPage.jsx";
 import PelangganPage from "./pages/TampilData/PelangganPage.jsx";
 import TarifPage from "./pages/TampilData/TarifPage.jsx";
@@ -16,80 +15,76 @@ import EditPenggunaan from "./pages/EditData/EditPenggunaan.jsx";
 import TagihanPage from "./pages/TampilData/TagihanPage.jsx";
 import DetailPenggunaan from "./pages/TampilData/DetailPenggunaan.jsx";
 import PembayaranPage from "./pages/TampilData/PembayaranPage.jsx";
+import Layout from "./Layout.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
 
 const App = () => {
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Layout component={<DashboardPage />} />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/user"
-            element={<Dashboard component={<UserPage />} />}
-          />
+          <Route path="/user" element={<Layout component={<UserPage />} />} />
           <Route
             path="/tambahuser"
-            element={<Dashboard component={<TambahUser />} />}
+            element={<Layout component={<TambahUser />} />}
           />
           <Route
             path="/edituser/:userId"
-            element={<Dashboard component={<EditUser />} />}
+            element={<Layout component={<EditUser />} />}
           />
           <Route
             path="/pelanggan"
-            element={<Dashboard component={<PelangganPage />} />}
+            element={<Layout component={<PelangganPage />} />}
           />
           <Route
             path="/tambahpelanggan"
-            element={<Dashboard component={<TambahPelanggan />} />}
+            element={<Layout component={<TambahPelanggan />} />}
           />
           <Route
             path="/editpelanggan/:pelangganId"
-            element={<Dashboard component={<EditPelanggan />} />}
+            element={<Layout component={<EditPelanggan />} />}
           />
-          <Route
-            path="/tarif"
-            element={<Dashboard component={<TarifPage />} />}
-          />
+          <Route path="/tarif" element={<Layout component={<TarifPage />} />} />
           <Route
             path="/tambahtarif"
-            element={<Dashboard component={<TambahTarif />} />}
+            element={<Layout component={<TambahTarif />} />}
           />
           <Route
             path="/edittarif/:tarifId"
-            element={<Dashboard component={<EditTarif />} />}
+            element={<Layout component={<EditTarif />} />}
           />
           <Route
             path="/penggunaan"
-            element={<Dashboard component={<PenggunaanPage />} />}
+            element={<Layout component={<PenggunaanPage />} />}
           />
           <Route
             path="/tambahpenggunaan"
-            element={<Dashboard component={<TambahPenggunaan />} />}
+            element={<Layout component={<TambahPenggunaan />} />}
           />
           <Route
             path="/editpenggunaan/:penggunaanId"
-            element={<Dashboard component={<EditPenggunaan />} />}
+            element={<Layout component={<EditPenggunaan />} />}
           />
           <Route
             path="/tagihanpelanggan/:pelangganId"
-            element={<Dashboard component={<TagihanPage />} />}
+            element={<Layout component={<TagihanPage />} />}
           />
           <Route
             path="/tagihan/:pelangganId"
-            element={<Dashboard component={<TagihanPage />} />}
+            element={<Layout component={<TagihanPage />} />}
           />
           <Route
             path="/detailpenggunaan/:pelangganId"
-            element={<Dashboard component={<DetailPenggunaan />} />}
+            element={<Layout component={<DetailPenggunaan />} />}
           />
           <Route
             path="/pembayaran"
-            element={<Dashboard component={<PembayaranPage />} />}
+            element={<Layout component={<PembayaranPage />} />}
           />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   );
 };

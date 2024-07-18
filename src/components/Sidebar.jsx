@@ -1,60 +1,83 @@
 import { Link } from "react-router-dom";
-import logopln from "../assets/logopln.png";
+import {
+  DashboardIcon,
+  PelangganIcon,
+  PembayaranIcon,
+  PenggunaanIcon,
+  TarifIcon,
+  UserIcon,
+} from "./Icons";
 
 const Sidebar = () => {
   return (
-    <div className="min-w-80 h-[100vh] bg-gray-800 text-white p-7">
-      <div className="text-3xl font-medium mb-10">
-        <img src={logopln} alt="" className="w-32" />
+    <div className="min-w-80 h-[100vh] bg-white text-black p-7">
+      <div className="text-4xl font-bold mb-10 flex justify-center">
+        {/* <img src={logokal} alt="" className="w-32" /> */}
+        <div className="text-yellow-400">KAL</div>
+        <div className="text-blue-400">ECTRIC</div>
       </div>
       <div>
         <ul className="flex flex-col gap-5">
           <li>
             <Link
-              to="/user"
-              className="bg-gray-900 text-white flex justify-center py-2 w-full"
+              to="/"
+              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
             >
-              User
+              <DashboardIcon />
+              Dashboard
             </Link>
           </li>
           <li>
             <Link
-              to="/pelanggan"
-              className="bg-gray-900  text-white flex justify-center py-2 w-full"
+              to="/user"
+              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
             >
-              Pelanggan
+              <UserIcon />
+              Data User
             </Link>
           </li>
           <li>
             <Link
               to="/tarif"
-              className="bg-gray-900 text-white flex justify-center py-2 w-full"
+              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
             >
-              Tarif
+              <TarifIcon />
+              Data Tarif
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/pelanggan"
+              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
+            >
+              <PelangganIcon />
+              Data Pelanggan
             </Link>
           </li>
           {/* <li>
             <Link
               to="/tagihan"
-              className="bg-gray-900 text-white flex justify-center py-2 w-full"
+              className="text-black flex justify-center py-3 w-full rounded-md hover:bg-[#202024] hover:text-white ease-in duration-100"
             >
               Tagihan
             </Link>
           </li> */}
           <li>
             <Link
-              to="/pembayaran"
-              className="bg-gray-900 text-white flex justify-center py-2 w-full"
+              to="/penggunaan"
+              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
             >
-              Pembayaran
+              <PenggunaanIcon />
+              Data Penggunaan
             </Link>
           </li>
           <li>
             <Link
-              to="/penggunaan"
-              className="bg-gray-900 text-white flex justify-center py-2 w-full"
+              to="/pembayaran"
+              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
             >
-              Penggunaan
+              <PembayaranIcon />
+              Data Pembayaran
             </Link>
           </li>
         </ul>

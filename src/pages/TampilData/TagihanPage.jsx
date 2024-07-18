@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { DeleteIcon, LeftArrow } from "../../components/Icons.jsx";
 
 const TagihanPage = () => {
   const { pelangganId } = useParams();
   const [tagihanData, setTagihanData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +29,7 @@ const TagihanPage = () => {
 
     fetchData();
   }, [pelangganId]);
+
   const handleDelete = async (tagihanId) => {
     await fetch(`http://localhost:3000/tagihan/${tagihanId}`, {
       method: "DELETE",
@@ -35,11 +38,18 @@ const TagihanPage = () => {
   };
 
   return (
-    <div className="w-full text-sm overflow-x-hidden">
-      <div className="font-medium text-3xl pt-10 px-8">Tagihan</div>
-      <div className="mt-10 mx-8">
+    <div className="text-sm bg-white m-5 rounded-md w-full relative overflow-hidden">
+      <Button
+        className="bg-gray-400 mt-10 ml-10 flex justify-center items-center gap-2"
+        onClick={() => navigate("/penggunaan")}
+      >
+        <LeftArrow />
+        Kembali
+      </Button>
+      <div className="font-semibold text-3xl pt-8 px-8">Data Tagihan</div>
+      <div className="m-10 h-[550px] overflow-x-hidden overflow-y-auto">
         <table className="w-full border-collapse text-center">
-          <thead>
+          <thead className="w-full bg-white">
             <tr className="border-b-2">
               <th>No</th>
               <th>Bulan</th>
@@ -66,9 +76,10 @@ const TagihanPage = () => {
                   </td>
                   <td>
                     <Button
-                      className="bg-red-600"
+                      className="bg-red-600 flex gap-2 justify-center items-center"
                       onClick={() => handleDelete(item.id_tagihan)}
                     >
+                      <DeleteIcon />
                       Hapus
                     </Button>
                   </td>

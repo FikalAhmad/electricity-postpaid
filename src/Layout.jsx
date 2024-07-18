@@ -1,10 +1,10 @@
 import Sidebar from "./components/Sidebar";
 
 /* eslint-disable react/prop-types */
-const Dashboard = ({ component }) => {
+const Layout = ({ component }) => {
   return (
     <>
-      <div className="flex">
+      <div className="flex h-screen bg-[#F2F2F2] overflow-hidden font-PlusJakarta">
         <Sidebar />
         {component}
       </div>
@@ -12,4 +12,4 @@ const Dashboard = ({ component }) => {
   );
 };
 
-export default Dashboard;
+export default Layout;

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
+import { EditIcon } from "../../components/Icons.jsx";
 
 const EditPenggunaan = () => {
   const { penggunaanId } = useParams();
-  const [pelanggan, setPelanggan] = useState();
+  const [pelanggan, setPelanggan] = useState(0);
   const [bulan, setBulan] = useState("");
   const [tahun, setTahun] = useState("");
   const [meterAwal, setMeterAwal] = useState();
@@ -33,6 +34,7 @@ const EditPenggunaan = () => {
       setTahun(json.tahun);
       setMeterAwal(json.meter_awal);
       setMeterAkhir(json.meter_akhir);
+      setPelanggan(json.id_pelanggan);
     };
     const pelangganData = async () => {
       const response = await fetch("http://localhost:3000/pelanggan", {
@@ -47,6 +49,7 @@ const EditPenggunaan = () => {
 
       const json = await response.json();
       setDataPelanggan(json);
+      setPelanggan(json.id_pelanggan);
     };
 
     fetchData();
@@ -72,7 +75,9 @@ const EditPenggunaan = () => {
   };
   return (
     <div className="w-full text-sm overflow-x-hidden">
-      <div className="font-medium text-3xl pt-10 px-8">Tambah User</div>
+      <div className="font-medium text-3xl pt-10 px-8">
+        Edit Data Penggunaan
+      </div>
       <div className="mt-10 mx-8">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-3">
@@ -117,7 +122,7 @@ const EditPenggunaan = () => {
               <input
                 type="number"
                 value={meterAwal}
-                onChange={(e) => setMeterAwal(parseInt(e.target.value, 10))}
+                onChange={(e) => setMeterAwal(e.target.valueAsNumber)}
                 className="border-2 rounded-md border-black py-2"
               />
             </div>
@@ -126,12 +131,16 @@ const EditPenggunaan = () => {
               <input
                 type="number"
                 value={meterAkhir}
-                onChange={(e) => setMeterAkhir(parseInt(e.target.value, 10))}
+                onChange={(e) => setMeterAkhir(e.target.valueAsNumber)}
                 className="border-2 rounded-md border-black py-2"
               />
             </div>
             <div className="flex justify-center gap-3 mt-5">
-              <Button className="bg-green-600" type="submit">
+              <Button
+                className="bg-green-700 flex gap-2 justify-center items-center"
+                type="submit"
+              >
+                <EditIcon />
                 Ubah
               </Button>
               <Button

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
+import { EditIcon } from "../../components/Icons.jsx";
 
 const EditPelanggan = () => {
   const { pelangganId } = useParams();
@@ -145,7 +146,11 @@ const EditPelanggan = () => {
               </select>
             </div>
             <div className="flex justify-center gap-3 mt-5">
-              <Button className="bg-green-600" type="submit">
+              <Button
+                className="bg-green-700 flex gap-2 justify-center items-center"
+                type="submit"
+              >
+                <EditIcon />
                 Ubah
               </Button>
               <Button

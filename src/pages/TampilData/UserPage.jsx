@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
+import { DeleteIcon, EditIcon, PlusIcon } from "../../components/Icons.jsx";
 
 const UserPage = () => {
   const [userData, setUserData] = useState([]);
@@ -33,17 +34,18 @@ const UserPage = () => {
   };
 
   return (
-    <div className="w-full text-sm overflow-x-hidden">
-      <div className="font-medium text-3xl pt-10 px-8">User</div>
+    <div className="text-sm bg-white m-5 rounded-md w-full relative overflow-hidden">
+      <div className="font-semibold text-3xl pt-8 px-8">Data User</div>
       <Button
-        className="bg-gray-400 ml-8 mt-3"
+        className="bg-gray-400 ml-8 mt-3 flex gap-2 justify-center items-center"
         onClick={() => navigate("/tambahuser")}
       >
+        <PlusIcon />
         Tambah Data
       </Button>
-      <div className="mt-10 mx-8">
+      <div className="m-10 h-[550px] overflow-x-hidden overflow-y-auto">
         <table className="w-full border-collapse text-center">
-          <thead>
+          <thead className="w-full bg-white">
             <tr className="border-b-2">
               <th>No</th>
               <th>Username</th>
@@ -52,7 +54,7 @@ const UserPage = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody>
             {userData.map((item, index) => {
               return (
                 <tr key={index + 1} className="border-b-2">
@@ -60,17 +62,19 @@ const UserPage = () => {
                   <td className="py-5">{item.username}</td>
                   <td className="py-5">{item.nama_admin}</td>
                   <td className="py-5">{item.level.nama_level}</td>
-                  <td className="flex justify-evenly items-center py-5">
+                  <td className="flex gap-5 justify-center items-center py-5">
                     <Button
-                      className="bg-green-700"
+                      className="bg-green-700 flex gap-2 justify-center items-center"
                       onClick={() => navigate(`/edituser/${item.id_user}`)}
                     >
+                      <EditIcon />
                       Edit
                     </Button>
                     <Button
-                      className="bg-red-600"
+                      className="bg-red-600 flex gap-2 justify-center items-center"
                       onClick={() => handleDelete(item.id_user)}
                     >
+                      <DeleteIcon />
                       Delete
                     </Button>
                   </td>

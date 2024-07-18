@@ -61,7 +61,7 @@ const TambahPenggunaan = () => {
                 className="border-2 rounded-md border-black py-2"
                 selected
                 value={pelanggan}
-                onChange={(e) => setPelanggan(parseInt(e.target.value, 10))}
+                onChange={(e) => setPelanggan(e.target.valueAsNumber)}
               >
                 <option value="">Pilih Pelanggan</option>
                 {dataPelanggan.map((item) => {
@@ -96,7 +96,7 @@ const TambahPenggunaan = () => {
               <input
                 type="number"
                 value={meterAwal}
-                onChange={(e) => setMeterAwal(parseInt(e.target.value, 10))}
+                onChange={(e) => setMeterAwal(e.target.valueAsNumber)}
                 className="border-2 rounded-md border-black py-2"
               />
             </div>
@@ -105,7 +105,7 @@ const TambahPenggunaan = () => {
               <input
                 type="number"
                 value={meterAkhir}
-                onChange={(e) => setMeterAkhir(parseInt(e.target.value, 10))}
+                onChange={(e) => setMeterAkhir(e.target.valueAsNumber)}
                 className="border-2 rounded-md border-black py-2"
               />
             </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
+import { PlusIcon } from "../../components/Icons.jsx";
 
 const TambahPelanggan = () => {
   const [username, setUsername] = useState("");
@@ -63,7 +64,9 @@ const TambahPelanggan = () => {
   );
   return (
     <div className="w-full text-sm overflow-x-hidden">
-      <div className="font-medium text-3xl pt-10 px-8">Tambah Pelanggan</div>
+      <div className="font-medium text-3xl pt-10 px-8">
+        Tambah Data Pelanggan
+      </div>
       <div className="mt-10 mx-8">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-3">
@@ -131,7 +134,11 @@ const TambahPelanggan = () => {
               </select>
             </div>
             <div className="flex justify-center gap-3 mt-5">
-              <Button className="bg-green-600" type="submit">
+              <Button
+                className="bg-green-700 flex gap-2 justify-center items-center"
+                type="submit"
+              >
+                <PlusIcon />
                 Tambah
               </Button>
               <Button
