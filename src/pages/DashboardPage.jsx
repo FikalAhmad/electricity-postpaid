@@ -6,9 +6,19 @@ import {
   TagihanIcon,
 } from "../components/Icons";
 
+/**
+ * Komponen DashboardPage untuk menampilkan halaman dashboard pada tampilan user yang berisi informasi mengenai jumlah pelanggan, pembayaran, tagihan dan penggunaan.
+ * @component
+ */
 const DashboardPage = () => {
   const [totalData, setTotalData] = useState([]);
   useEffect(() => {
+    /**
+     * Mengambil data total data dari endpoint API.
+     * @async
+     * @function fetchData
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/totaldata", {
         headers: {

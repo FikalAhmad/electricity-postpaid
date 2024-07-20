@@ -3,11 +3,23 @@ import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { PlusIcon, SearchIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen PenggunaanPage untuk menampilkan list penggunaan dari beberapa pelanggan.
+ * @component
+ */
 const PenggunaanPage = () => {
   const [penggunaanData, setPenggunaanData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data pelanggan dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/pelanggan", {
         headers: {

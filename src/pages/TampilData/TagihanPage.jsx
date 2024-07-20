@@ -3,12 +3,32 @@ import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { DeleteIcon, LeftArrow } from "../../components/Icons.jsx";
 
+/**
+ * Komponen TagihanPage untuk menampilkan list tagihan pelanggan.
+ * @component
+ */
 const TagihanPage = () => {
+  /**
+   * Hook untuk mengambil parameter url.
+   * @type {function}
+   */
   const { pelangganId } = useParams();
   const [tagihanData, setTagihanData] = useState([]);
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data tagihan pelanggan by idpelanggan dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch(
         `http://localhost:3000/tagihanpelanggan/${pelangganId}`,
@@ -30,6 +50,11 @@ const TagihanPage = () => {
     fetchData();
   }, [pelangganId]);
 
+  /**
+   * Menangani proses delete data tagihan by id ketika formulir dikirimkan.
+   * @async
+   * @param {String} tagihanId - menerima string id penggunaan.
+   */
   const handleDelete = async (tagihanId) => {
     await fetch(`http://localhost:3000/tagihan/${tagihanId}`, {
       method: "DELETE",

@@ -3,16 +3,36 @@ import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { EditIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen EditUser untuk menangani proses pengeditan user dan menampilkan halaman edit user.
+ * @component
+ */
 const EditUser = () => {
+  /**
+   * Hook untuk mengambil parameter url.
+   * @type {function}
+   */
   const { userId } = useParams();
   const [nama, setNama] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(0);
 
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data user by id dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch(`http://localhost:3000/user/${userId}`, {
         headers: {
@@ -34,6 +54,11 @@ const EditUser = () => {
     fetchData();
   }, [userId]);
 
+  /**
+   * Menangani proses update data user by id ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:3000/user/${userId}`, {

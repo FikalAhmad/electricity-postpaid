@@ -2,11 +2,25 @@ import { useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Komponen TambahTarif untuk menangani proses penambahan tarif dan menampilkan halaman tambah tarif.
+ * @component
+ */
 const TambahTarif = () => {
   const [daya, setDaya] = useState();
   const [tarifperkwh, setTarifperkwh] = useState();
+
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
+  /**
+   * Menangani proses tambah data tarif ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch("http://localhost:3000/tarif", {

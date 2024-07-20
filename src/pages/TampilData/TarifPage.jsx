@@ -3,11 +3,27 @@ import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { DeleteIcon, EditIcon, PlusIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen TarifPage untuk menampilkan list tarif.
+ * @component
+ */
 const TarifPage = () => {
   const [tarifData, setTarifData] = useState([]);
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data tarif dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/tarif", {
         headers: {
@@ -26,6 +42,11 @@ const TarifPage = () => {
     fetchData();
   }, []);
 
+  /**
+   * Menangani proses delete data tarif by id ketika formulir dikirimkan.
+   * @async
+   * @param {String} tarifId - menerima string id tarif.
+   */
   const handleDelete = async (tarifId) => {
     await fetch(`http://localhost:3000/tarif/${tarifId}`, {
       method: "DELETE",

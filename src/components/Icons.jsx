@@ -1,8 +1,3 @@
-/**
- * ${1:Description placeholder}
- *
- * @returns {${2:*}}
- */
 export const PlusIcon = () => {
   return (
     <svg

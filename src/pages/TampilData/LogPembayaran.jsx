@@ -1,13 +1,28 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import Loading from "../../components/Loading";
 
+/**
+ * Komponen LogPelanggan untuk menampilkan list penggunaan.
+ * @component
+ */
 const LogPelanggan = () => {
-  const [pelangganBayar, setpelangganBayar] = useState([]);
+  /**
+   * pelangganData - untuk mengambil data pelanggan yang login dari localStorage.
+   */
   const pelangganData = JSON.parse(localStorage.getItem("userLogin"));
+  const [pelangganBayar, setpelangganBayar] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    /**
+     * Mengambil data pembayaran by id dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch(
         `http://localhost:3000/pembayaran/${pelangganData.idUser}`,

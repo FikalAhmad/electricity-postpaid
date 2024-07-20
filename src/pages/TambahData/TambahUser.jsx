@@ -2,13 +2,27 @@ import { useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Komponen TambahUser untuk menangani proses penambahan user dan menampilkan halaman tambah user.
+ * @component
+ */
 const TambahUser = () => {
   const [nama, setNama] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(0);
+
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
+  /**
+   * Menangani proses tambah data user ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch("http://localhost:3000/user", {

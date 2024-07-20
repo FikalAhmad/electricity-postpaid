@@ -3,11 +3,27 @@ import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { DeleteIcon, EditIcon, PlusIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen UserPage untuk menampilkan list user.
+ * @component
+ */
 const UserPage = () => {
   const [userData, setUserData] = useState([]);
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data user dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/user", {
         headers: {
@@ -26,6 +42,11 @@ const UserPage = () => {
     fetchData();
   }, []);
 
+  /**
+   * Menangani proses delete data user by id ketika formulir dikirimkan.
+   * @async
+   * @param {String} userId - menerima string id user.
+   */
   const handleDelete = async (userId) => {
     await fetch(`http://localhost:3000/user/${userId}`, {
       method: "DELETE",

@@ -3,14 +3,34 @@ import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { EditIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen EditTarif untuk menangani proses pengeditan tarif dan menampilkan halaman edit tarif.
+ * @component
+ */
 const EditTarif = () => {
+  /**
+   * Hook untuk mengambil parameter url.
+   * @type {function}
+   */
   const { tarifId } = useParams();
   const [daya, setDaya] = useState(0);
   const [tarifperkwh, setTarifperkwh] = useState(0);
 
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data tarif by id dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch(`http://localhost:3000/tarif/${tarifId}`, {
         headers: {
@@ -30,6 +50,11 @@ const EditTarif = () => {
     fetchData();
   }, [tarifId]);
 
+  /**
+   * Menangani proses update data tarif by id ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:3000/tarif/${tarifId}`, {

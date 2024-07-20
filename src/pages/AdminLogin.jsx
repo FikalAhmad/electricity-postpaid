@@ -14,10 +14,15 @@ const AdminLogin = () => {
   });
   const [message, setMessage] = useState("");
 
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   /**
    * Menangani proses login ketika formulir dikirimkan.
+   * @async
    * @param {Event} e - Event pengiriman formulir.
    */
   const handleLogin = async (e) => {

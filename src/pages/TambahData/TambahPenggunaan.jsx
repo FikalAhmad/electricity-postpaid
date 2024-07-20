@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 
+/**
+ * Komponen TambahPenggunaan untuk menangani proses penambahan penggunaan dan menampilkan halaman tambah penggunaan.
+ * @component
+ */
 const TambahPenggunaan = () => {
   const { pelangganId } = useParams();
   const [pelanggan, setPelanggan] = useState(0);
@@ -10,9 +14,22 @@ const TambahPenggunaan = () => {
   const [meterAwal, setMeterAwal] = useState();
   const [meterAkhir, setMeterAkhir] = useState();
   const [dataPelanggan, setDataPelanggan] = useState([]);
+
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data pelanggan dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/pelanggan", {
         headers: {
@@ -32,6 +49,11 @@ const TambahPenggunaan = () => {
     fetchData();
   }, [pelangganId]);
 
+  /**
+   * Menangani proses tambah data penggunaan ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch("http://localhost:3000/penggunaan", {

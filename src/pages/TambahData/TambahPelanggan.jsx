@@ -3,6 +3,10 @@ import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { PlusIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen TambahPelanggan untuk menangani proses penambahan pelanggan dan menampilkan halaman tambah pelanggan.
+ * @component
+ */
 const TambahPelanggan = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,9 +17,21 @@ const TambahPelanggan = () => {
 
   const [dataDaya, setDataDaya] = useState([]);
 
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data tarif dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/tarif", {
         headers: {
@@ -34,6 +50,11 @@ const TambahPelanggan = () => {
     fetchData();
   }, []);
 
+  /**
+   * Menangani proses tambah data pelanggan ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch("http://localhost:3000/pelanggan", {

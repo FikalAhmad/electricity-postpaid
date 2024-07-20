@@ -3,7 +3,15 @@ import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { EditIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen EditPelanggan untuk menangani proses pengeditan pelanggan dan menampilkan halaman edit pelanggan.
+ * @component
+ */
 const EditPelanggan = () => {
+  /**
+   * Hook untuk mengambil parameter url.
+   * @type {function}
+   */
   const { pelangganId } = useParams();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,9 +22,21 @@ const EditPelanggan = () => {
 
   const [dataDaya, setDataDaya] = useState([]);
 
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data pelanggan by id dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch(
         `http://localhost:3000/pelanggan/${pelangganId}`,
@@ -39,6 +59,14 @@ const EditPelanggan = () => {
       setAlamat(json.alamat);
       setDaya(json.id_tarif);
     };
+    /**
+     * Mengambil data tarif dari endpoint API.
+     *
+     * @async
+     * @function tarifData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const tarifData = async () => {
       const response = await fetch("http://localhost:3000/tarif", {
         headers: {
@@ -58,6 +86,11 @@ const EditPelanggan = () => {
     tarifData();
   }, [pelangganId]);
 
+  /**
+   * Menangani proses update data pelanggan by id ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:3000/pelanggan/${pelangganId}`, {

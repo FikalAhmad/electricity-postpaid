@@ -1,12 +1,13 @@
 /**
- * ${1:Description placeholder}
+ * Button component - Komponen button untuk membuat tombol button menjadi reusable dan bisa digunakan secara berulang kali.
  *
- * @param {{ className: any; onClick: any; type: any; children: any; }} param0
- * @param {${2:*}} param0.className
- * @param {${3:*}} param0.onClick
- * @param {${4:*}} param0.type
- * @param {${5:*}} param0.children
- * @returns {${6:*}\}
+ * @param {object} props - Komponen properti.
+ * @param {string} props.className - Kelas CSS tambahan untuk button.
+ * @param {function} props.onClick - Fungsi yang dipanggil saat button diklik.
+ * @param {string} props.type - Jenis button (e.g., "button", "submit").
+ * @param {React.ReactNode} props.children - Konten didalam parent button.
+ *
+ * @returns {JSX.Element} Komponen button yang sudah diatur.
  */
 const Button = ({ className, onClick, type, children }) => {
   return (

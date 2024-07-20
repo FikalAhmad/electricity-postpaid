@@ -2,10 +2,22 @@ import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import { DeleteIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen PembayaranPage untuk menampilkan list pembayaran.
+ * @component
+ */
 const PembayaranPage = () => {
   const [pembayaranData, setPembayaranData] = useState([]);
 
   useEffect(() => {
+    /**
+     * Mengambil data pembayaran dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/pembayaran", {
         headers: {
@@ -24,6 +36,11 @@ const PembayaranPage = () => {
     fetchData();
   }, []);
 
+  /**
+   * Menangani proses hapus data tarif by idtarif ketika formulir dikirimkan.
+   * @async
+   * @param {String} tarifId - menerima string id tarif.
+   */
   const handleDelete = async (tarifId) => {
     await fetch(`http://localhost:3000/tarif/${tarifId}`, {
       method: "DELETE",

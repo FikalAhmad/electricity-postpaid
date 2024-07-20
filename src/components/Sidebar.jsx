@@ -10,13 +10,25 @@ import {
 } from "./Icons";
 
 /**
- * ${1:Description placeholder}
- *
- * @returns {${2:*}}
+ * Sidebar component - Komponen sidebar untuk navigasi seluruh fitur yang ada didalam aplikasi.
+ * @returns {JSX.Element} Komponen sidebar.
  */
 const Sidebar = () => {
+  /**
+   * storedUserData - untuk mengambil data dari localStorage user yang login
+   */
   const storedUserData = JSON.parse(localStorage.getItem("userLogin"));
+
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
+
+  /**
+   * Menangani logout akun dan menavigasikan ke halaman login masing-masing mode.
+   * @param {string} mode - Menerima string ("Pelanggan", "Admin", "Petugas").
+   */
   const handleLogout = (mode) => {
     localStorage.removeItem("userLogin");
     mode == "Pelanggan" ? navigate("/login") : navigate("/admin/login");

@@ -3,12 +3,32 @@ import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { DeleteIcon, EditIcon, LeftArrow } from "../../components/Icons.jsx";
 
+/**
+ * Komponen DetailPenggunaan untuk menampilkan list penggunaan.
+ * @component
+ */
 const DetailPenggunaan = () => {
+  /**
+   * Hook untuk mengambil parameter url.
+   * @type {function}
+   */
   const { pelangganId } = useParams();
   const [penggunaanData, setPenggunaanData] = useState([]);
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data pelanggan by id dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch(
         `http://localhost:3000/detailpenggunaan/${pelangganId}`,
@@ -30,6 +50,11 @@ const DetailPenggunaan = () => {
     fetchData();
   }, [pelangganId]);
 
+  /**
+   * Menangani proses delete data penggunaan by id ketika formulir dikirimkan.
+   * @async
+   * @param {String} penggunaanId - menerima string id penggunaan.
+   */
   const handleDelete = async (penggunaanId) => {
     await fetch(`http://localhost:3000/penggunaan/${penggunaanId}`, {
       method: "DELETE",

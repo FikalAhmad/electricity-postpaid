@@ -3,16 +3,28 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import logokal from "../assets/logokal.png";
 
+/**
+ * Komponen PelangganLogin untuk menangani proses login pelanggan dan menampilkan halaman login sebagai pelanggan.
+ * @component
+ */
 const PelangganLogin = () => {
-  // const { login, name, idUser, authenticated } = useAppContext();
   const [userLogin, setUserLogin] = useState({
     username: "",
     password: "",
   });
   const [message, setMessage] = useState("");
 
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
+  /**
+   * Menangani proses login ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:3000/login", {
@@ -42,6 +54,10 @@ const PelangganLogin = () => {
     }
   };
 
+  /**
+   * Menangani perubahan input pada formulir login.
+   * @param {Event} e - Event perubahan input.
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserLogin((state) => ({

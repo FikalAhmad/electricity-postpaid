@@ -3,11 +3,27 @@ import Button from "../../components/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { DeleteIcon, EditIcon, PlusIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen PelangganPage untuk menampilkan list pelanggan.
+ * @component
+ */
 const PelangganPage = () => {
   const [pelangganData, setPelangganData] = useState([]);
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data pelanggan dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/pelanggan", {
         headers: {
@@ -26,6 +42,11 @@ const PelangganPage = () => {
     fetchData();
   }, []);
 
+  /**
+   * Menangani proses hapus data pelanggan by idpelanggan ketika formulir dikirimkan.
+   * @async
+   * @param {String} pelangganId - menerima string id pelanggan.
+   */
   const handleDelete = async (pelangganId) => {
     await fetch(`http://localhost:3000/pelanggan/${pelangganId}`, {
       method: "DELETE",

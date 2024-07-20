@@ -3,7 +3,15 @@ import Button from "../../components/Button.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { EditIcon } from "../../components/Icons.jsx";
 
+/**
+ * Komponen EditPenggunaan untuk menangani proses pengeditan penggunaan dan menampilkan halaman edit penggunaan.
+ * @component
+ */
 const EditPenggunaan = () => {
+  /**
+   * Hook untuk mengambil parameter url.
+   * @type {function}
+   */
   const { penggunaanId } = useParams();
   const [pelanggan, setPelanggan] = useState(0);
   const [bulan, setBulan] = useState("");
@@ -12,9 +20,21 @@ const EditPenggunaan = () => {
   const [meterAkhir, setMeterAkhir] = useState();
   const [dataPelanggan, setDataPelanggan] = useState([]);
 
+  /**
+   * Hook untuk navigasi.
+   * @type {function}
+   */
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Mengambil data penggunaan by id dari endpoint API.
+     *
+     * @async
+     * @function fetchData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const fetchData = async () => {
       const response = await fetch(
         `http://localhost:3000/penggunaan/${penggunaanId}`,
@@ -36,6 +56,14 @@ const EditPenggunaan = () => {
       setMeterAkhir(json.meter_akhir);
       setPelanggan(json.id_pelanggan);
     };
+    /**
+     * Mengambil data pelanggan dari endpoint API.
+     *
+     * @async
+     * @function pelangganData
+     *
+     * @throws {Error} Jika status respons tidak OK.
+     */
     const pelangganData = async () => {
       const response = await fetch("http://localhost:3000/pelanggan", {
         headers: {
@@ -56,6 +84,11 @@ const EditPenggunaan = () => {
     pelangganData();
   }, [penggunaanId]);
 
+  /**
+   * Menangani proses update data penggunaan by id ketika formulir dikirimkan.
+   * @async
+   * @param {Event} e - Event pengiriman formulir.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:3000/penggunaan/${penggunaanId}`, {
