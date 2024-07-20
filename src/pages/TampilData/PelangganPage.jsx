@@ -9,6 +9,7 @@ import { DeleteIcon, EditIcon, PlusIcon } from "../../components/Icons.jsx";
  */
 const PelangganPage = () => {
   const [pelangganData, setPelangganData] = useState([]);
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
   /**
    * Hook untuk navigasi.
    * @type {function}
@@ -28,6 +29,7 @@ const PelangganPage = () => {
       const response = await fetch("http://localhost:3000/pelanggan", {
         headers: {
           "Content-Type": "application/json",
+          "X-User-Id": idUser,
         },
         method: "GET",
       });
@@ -40,7 +42,7 @@ const PelangganPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [idUser]);
 
   /**
    * Menangani proses hapus data pelanggan by idpelanggan ketika formulir dikirimkan.

@@ -20,80 +20,167 @@ import AdminLogin from "./pages/AdminLogin.jsx";
 import PelangganLogin from "./pages/PelangganLogin.jsx";
 import PelangganBayar from "./pages/TampilData/PelangganBayar.jsx";
 import LogPelanggan from "./pages/TampilData/LogPembayaran.jsx";
+import PrivateRoute from "./middleware/PrivateRoute.jsx";
 
 const App = () => {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout component={<DashboardPage />} />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<DashboardPage />} />}
+              />
+            }
+          />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/login" element={<PelangganLogin />} />
-          <Route path="/user" element={<Layout component={<UserPage />} />} />
+          <Route
+            path="/user"
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<UserPage />} />}
+              />
+            }
+          />
           <Route
             path="/tambahuser"
-            element={<Layout component={<TambahUser />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<TambahUser />} />}
+              />
+            }
           />
           <Route
             path="/edituser/:userId"
-            element={<Layout component={<EditUser />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<EditUser />} />}
+              />
+            }
           />
           <Route
             path="/pelanggan"
-            element={<Layout component={<PelangganPage />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<PelangganPage />} />}
+              />
+            }
           />
           <Route
             path="/tambahpelanggan"
-            element={<Layout component={<TambahPelanggan />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<TambahPelanggan />} />}
+              />
+            }
           />
           <Route
             path="/editpelanggan/:pelangganId"
-            element={<Layout component={<EditPelanggan />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<EditPelanggan />} />}
+              />
+            }
           />
-          <Route path="/tarif" element={<Layout component={<TarifPage />} />} />
+          <Route
+            path="/tarif"
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<TarifPage />} />}
+              />
+            }
+          />
+
           <Route
             path="/tambahtarif"
-            element={<Layout component={<TambahTarif />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<TambahTarif />} />}
+              />
+            }
           />
           <Route
             path="/edittarif/:tarifId"
-            element={<Layout component={<EditTarif />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<EditTarif />} />}
+              />
+            }
           />
           <Route
             path="/penggunaan"
-            element={<Layout component={<PenggunaanPage />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<PenggunaanPage />} />}
+              />
+            }
           />
           <Route
             path="/tambahpenggunaan/:pelangganId"
-            element={<Layout component={<TambahPenggunaan />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<TambahPenggunaan />} />}
+              />
+            }
           />
           <Route
             path="/editpenggunaan/:penggunaanId"
-            element={<Layout component={<EditPenggunaan />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<EditPenggunaan />} />}
+              />
+            }
           />
           <Route
             path="/tagihanpelanggan/:pelangganId"
-            element={<Layout component={<TagihanPage />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<TagihanPage />} />}
+              />
+            }
           />
           <Route
             path="/tagihan/:pelangganId"
-            element={<Layout component={<TagihanPage />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<TagihanPage />} />}
+              />
+            }
           />
           <Route
             path="/detailpenggunaan/:pelangganId"
-            element={<Layout component={<DetailPenggunaan />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<DetailPenggunaan />} />}
+              />
+            }
           />
           <Route
             path="/pembayaran"
-            element={<Layout component={<PembayaranPage />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<PembayaranPage />} />}
+              />
+            }
           />
           <Route
             path="/pelanggan/bayar"
-            element={<Layout component={<PelangganBayar />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<PelangganBayar />} />}
+              />
+            }
           />
           <Route
             path="/pelanggan/log"
-            element={<Layout component={<LogPelanggan />} />}
+            element={
+              <PrivateRoute
+                privateRoute={<Layout component={<LogPelanggan />} />}
+              />
+            }
           />
         </Routes>
       </Router>

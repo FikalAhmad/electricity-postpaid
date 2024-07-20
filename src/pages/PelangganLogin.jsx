@@ -1,13 +1,19 @@
 import { useState } from "react";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
-import logokal from "../assets/logokal.png";
 
 /**
  * Komponen PelangganLogin untuk menangani proses login pelanggan dan menampilkan halaman login sebagai pelanggan.
  * @component
  */
 const PelangganLogin = () => {
+  /**
+   * Untuk mengset data belum login dan mode pelanggan dari localStorage agar dapat mendeteksi dia belum login saat aplikasi pertama dirender.
+   */
+  localStorage.setItem(
+    "userLogin",
+    JSON.stringify({ isLogin: false, mode: "Pelanggan" })
+  );
   const [userLogin, setUserLogin] = useState({
     username: "",
     password: "",
@@ -73,8 +79,9 @@ const PelangganLogin = () => {
         className="w-[520px] bg-white shadow-lg p-10 rounded-lg"
       >
         <div className="text-4xl font-semibold flex flex-col justify-center items-center">
-          <div className="text-3xl font-medium flex justify-center">
-            <img src={logokal} alt="" className="w-32" />
+          <div className="text-5xl font-bold flex justify-center">
+            <div className="text-yellow-400">KAL</div>
+            <div className="text-blue-400">ECTRIC</div>
           </div>
           <div className="mt-3">Selamat Datang</div>
           <div className="text-sm text-gray-400 text-center my-3">
