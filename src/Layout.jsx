@@ -1,6 +1,5 @@
 import Sidebar from "./components/Sidebar";
 
-/* eslint-disable react/prop-types */
 const Layout = ({ component }) => {
   return (
     <>

@@ -3,7 +3,6 @@ import UserPage from "./pages/TampilData/UserPage.jsx";
 import PelangganPage from "./pages/TampilData/PelangganPage.jsx";
 import TarifPage from "./pages/TampilData/TarifPage.jsx";
 import TambahUser from "./pages/TambahData/TambahUser.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
 import EditUser from "./pages/EditData/EditUser.jsx";
 import TambahPelanggan from "./pages/TambahData/TambahPelanggan.jsx";
 import EditPelanggan from "./pages/EditData/EditPelanggan.jsx";
@@ -17,6 +16,10 @@ import DetailPenggunaan from "./pages/TampilData/DetailPenggunaan.jsx";
 import PembayaranPage from "./pages/TampilData/PembayaranPage.jsx";
 import Layout from "./Layout.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
+import AdminLogin from "./pages/AdminLogin.jsx";
+import PelangganLogin from "./pages/PelangganLogin.jsx";
+import PelangganBayar from "./pages/TampilData/PelangganBayar.jsx";
+import LogPelanggan from "./pages/TampilData/LogPembayaran.jsx";
 
 const App = () => {
   return (
@@ -24,7 +27,8 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Layout component={<DashboardPage />} />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/login" element={<PelangganLogin />} />
           <Route path="/user" element={<Layout component={<UserPage />} />} />
           <Route
             path="/tambahuser"
@@ -60,7 +64,7 @@ const App = () => {
             element={<Layout component={<PenggunaanPage />} />}
           />
           <Route
-            path="/tambahpenggunaan"
+            path="/tambahpenggunaan/:pelangganId"
             element={<Layout component={<TambahPenggunaan />} />}
           />
           <Route
@@ -82,6 +86,14 @@ const App = () => {
           <Route
             path="/pembayaran"
             element={<Layout component={<PembayaranPage />} />}
+          />
+          <Route
+            path="/pelanggan/bayar"
+            element={<Layout component={<PelangganBayar />} />}
+          />
+          <Route
+            path="/pelanggan/log"
+            element={<Layout component={<LogPelanggan />} />}
           />
         </Routes>
       </Router>

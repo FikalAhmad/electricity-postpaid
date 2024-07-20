@@ -48,10 +48,13 @@ const TambahTarif = () => {
               />
             </div>
             <div className="flex justify-center gap-3 mt-5">
-              <Button className="bg-green-600" type="submit">
+              <Button className="bg-green-700 rounded-md" type="submit">
                 Tambah
               </Button>
-              <Button className="bg-red-600" onClick={() => navigate("/tarif")}>
+              <Button
+                className="bg-red-600 rounded-md"
+                onClick={() => navigate("/tarif")}
+              >
                 Cancel
               </Button>
             </div>

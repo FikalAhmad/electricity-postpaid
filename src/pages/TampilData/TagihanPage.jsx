@@ -83,10 +83,6 @@ const TagihanPage = () => {
                       Hapus
                     </Button>
                   </td>
-                  {/* <td className="flex justify-evenly items-center py-5">
-                    <Button className="bg-green-700">Edit</Button>
-                    <Button className="bg-red-600">Delete</Button>
-                  </td> */}
                 </tr>
               );
             })}

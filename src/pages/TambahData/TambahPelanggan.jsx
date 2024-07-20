@@ -52,16 +52,6 @@ const TambahPelanggan = () => {
     });
     await navigate("/pelanggan");
   };
-  console.log(
-    JSON.stringify({
-      username,
-      password,
-      nomor_kwh: nomorKwh,
-      nama_pelanggan: namaPelanggan,
-      alamat,
-      id_tarif: daya,
-    })
-  );
   return (
     <div className="w-full text-sm overflow-x-hidden">
       <div className="font-medium text-3xl pt-10 px-8">

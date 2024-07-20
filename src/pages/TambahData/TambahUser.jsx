@@ -72,10 +72,13 @@ const TambahUser = () => {
               </select>
             </div>
             <div className="flex justify-center gap-3 mt-5">
-              <Button className="bg-green-600" type="submit">
+              <Button className="bg-green-700 rounded-md" type="submit">
                 Tambah
               </Button>
-              <Button className="bg-red-600" onClick={() => navigate("/user")}>
+              <Button
+                className="bg-red-600 rounded-md"
+                onClick={() => navigate("/user")}
+              >
                 Cancel
               </Button>
             </div>

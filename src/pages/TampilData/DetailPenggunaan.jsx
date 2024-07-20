@@ -40,7 +40,7 @@ const DetailPenggunaan = () => {
   return (
     <div className="text-sm bg-white m-5 rounded-md w-full relative overflow-hidden">
       <Button
-        className="bg-gray-400 mt-10 ml-10 flex justify-center items-center gap-2"
+        className="bg-gray-400 mt-10 ml-10 flex justify-center items-center gap-2 rounded-md"
         onClick={() => navigate("/penggunaan")}
       >
         <LeftArrow />
@@ -74,7 +74,7 @@ const DetailPenggunaan = () => {
                   <td className="py-5">{item.tagihan.jumlah_meter} kWh</td>
                   <td className="flex gap-5 justify-center items-center py-5">
                     <Button
-                      className="bg-green-700 flex gap-2 justify-center items-center"
+                      className="bg-green-700 flex gap-2 justify-center items-center rounded-md"
                       onClick={() =>
                         navigate(`/editpenggunaan/${item.id_penggunaan}`)
                       }
@@ -83,7 +83,7 @@ const DetailPenggunaan = () => {
                       Edit
                     </Button>
                     <Button
-                      className="bg-red-700 flex gap-2 justify-center items-center"
+                      className="bg-red-700 flex gap-2 justify-center items-center rounded-md"
                       onClick={() => handleDelete(item.id_penggunaan)}
                     >
                       <DeleteIcon />

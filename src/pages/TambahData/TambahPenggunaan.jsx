@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TambahPenggunaan = () => {
-  const [pelanggan, setPelanggan] = useState();
+  const { pelangganId } = useParams();
+  const [pelanggan, setPelanggan] = useState(0);
   const [bulan, setBulan] = useState("");
   const [tahun, setTahun] = useState("");
   const [meterAwal, setMeterAwal] = useState();
@@ -25,10 +26,11 @@ const TambahPenggunaan = () => {
 
       const json = await response.json();
       setDataPelanggan(json);
+      setPelanggan(pelangganId);
     };
 
     fetchData();
-  }, []);
+  }, [pelangganId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +45,6 @@ const TambahPenggunaan = () => {
         tahun,
         meter_awal: meterAwal,
         meter_akhir: meterAkhir,
-        status: true,
       }),
     });
     await navigate("/penggunaan");
@@ -61,7 +62,7 @@ const TambahPenggunaan = () => {
                 className="border-2 rounded-md border-black py-2"
                 selected
                 value={pelanggan}
-                onChange={(e) => setPelanggan(e.target.valueAsNumber)}
+                onChange={(e) => setPelanggan(parseInt(e.target.value, 10))}
               >
                 <option value="">Pilih Pelanggan</option>
                 {dataPelanggan.map((item) => {
@@ -96,7 +97,7 @@ const TambahPenggunaan = () => {
               <input
                 type="number"
                 value={meterAwal}
-                onChange={(e) => setMeterAwal(e.target.valueAsNumber)}
+                onChange={(e) => setMeterAwal(parseInt(e.target.value, 10))}
                 className="border-2 rounded-md border-black py-2"
               />
             </div>
@@ -105,16 +106,16 @@ const TambahPenggunaan = () => {
               <input
                 type="number"
                 value={meterAkhir}
-                onChange={(e) => setMeterAkhir(e.target.valueAsNumber)}
+                onChange={(e) => setMeterAkhir(parseInt(e.target.value, 10))}
                 className="border-2 rounded-md border-black py-2"
               />
             </div>
             <div className="flex justify-center gap-3 mt-5">
-              <Button className="bg-green-600" type="submit">
+              <Button className="bg-green-700 rounded-md" type="submit">
                 Tambah
               </Button>
               <Button
-                className="bg-red-600"
+                className="bg-red-600 rounded-md"
                 onClick={() => navigate("/penggunaan")}
               >
                 Cancel

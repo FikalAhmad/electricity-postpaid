@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   DashboardIcon,
+  HistoryIcon,
   PelangganIcon,
   PembayaranIcon,
   PenggunaanIcon,
@@ -8,79 +9,151 @@ import {
   UserIcon,
 } from "./Icons";
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 const Sidebar = () => {
+  const storedUserData = JSON.parse(localStorage.getItem("userLogin"));
+  const navigate = useNavigate();
+  const handleLogout = (mode) => {
+    localStorage.removeItem("userLogin");
+    mode == "Pelanggan" ? navigate("/login") : navigate("/admin/login");
+  };
+
   return (
-    <div className="min-w-80 h-[100vh] bg-white text-black p-7">
+    <div className="min-w-80 h-screen bg-white text-black p-7">
       <div className="text-4xl font-bold mb-10 flex justify-center">
-        {/* <img src={logokal} alt="" className="w-32" /> */}
         <div className="text-yellow-400">KAL</div>
         <div className="text-blue-400">ECTRIC</div>
       </div>
-      <div>
-        <ul className="flex flex-col gap-5">
-          <li>
-            <Link
-              to="/"
-              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
-            >
-              <DashboardIcon />
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/user"
-              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
-            >
-              <UserIcon />
-              Data User
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/tarif"
-              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
-            >
-              <TarifIcon />
-              Data Tarif
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/pelanggan"
-              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
-            >
-              <PelangganIcon />
-              Data Pelanggan
-            </Link>
-          </li>
-          {/* <li>
-            <Link
-              to="/tagihan"
-              className="text-black flex justify-center py-3 w-full rounded-md hover:bg-[#202024] hover:text-white ease-in duration-100"
-            >
-              Tagihan
-            </Link>
-          </li> */}
-          <li>
-            <Link
-              to="/penggunaan"
-              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
-            >
-              <PenggunaanIcon />
-              Data Penggunaan
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/pembayaran"
-              className="text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100"
-            >
-              <PembayaranIcon />
-              Data Pembayaran
-            </Link>
-          </li>
+      <div className="flex flex-col items-center justify-between min-h-[660px]">
+        <ul className="flex flex-col gap-5 w-full">
+          {storedUserData.mode == "Pelanggan" ? (
+            <>
+              <li>
+                <NavLink
+                  to="/pelanggan/bayar"
+                  className={({ isActive }) =>
+                    `text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100 ${
+                      isActive ? "bg-[#ECEDF0]" : ""
+                    }`
+                  }
+                >
+                  <PembayaranIcon />
+                  Bayar Tagihan
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/pelanggan/log"
+                  className={({ isActive }) =>
+                    `text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100 ${
+                      isActive ? "bg-[#ECEDF0]" : ""
+                    }`
+                  }
+                >
+                  <HistoryIcon />
+                  Log Pembayaran
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100 ${
+                      isActive ? "bg-[#ECEDF0]" : ""
+                    }`
+                  }
+                >
+                  <DashboardIcon />
+                  Dashboard
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/user"
+                  className={({ isActive }) =>
+                    `text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100 ${
+                      isActive ? "bg-[#ECEDF0]" : ""
+                    }`
+                  }
+                >
+                  <UserIcon />
+                  Data User
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/tarif"
+                  className={({ isActive }) =>
+                    `text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100 ${
+                      isActive ? "bg-[#ECEDF0]" : ""
+                    }`
+                  }
+                >
+                  <TarifIcon />
+                  Data Tarif
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/pelanggan"
+                  className={({ isActive }) =>
+                    `text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100 ${
+                      isActive ? "bg-[#ECEDF0]" : ""
+                    }`
+                  }
+                >
+                  <PelangganIcon />
+                  Data Pelanggan
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/penggunaan"
+                  className={({ isActive }) =>
+                    `text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100 ${
+                      isActive ? "bg-[#ECEDF0]" : ""
+                    }`
+                  }
+                >
+                  <PenggunaanIcon />
+                  Data Penggunaan
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/pembayaran"
+                  className={({ isActive }) =>
+                    `text-black flex items-center gap-3 py-3 px-3 w-full rounded-md hover:bg-[#ECEDF0] ease-in duration-100 ${
+                      isActive ? "bg-[#ECEDF0]" : ""
+                    }`
+                  }
+                >
+                  <PembayaranIcon />
+                  Data Pembayaran
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
+        <div className="flex flex-col w-full gap-3">
+          <div className="px-4 py-2 rounded-md shadow-md bg-[#ECEDF0] flex flex-col justify-center items-center">
+            Selamat Datang
+            <div className="font-bold">{storedUserData.namaUser}</div>
+          </div>
+          <button
+            className="px-4 py-2 rounded-md shadow-md bg-[#ECEDF0] flex justify-center"
+            onClick={() => handleLogout(storedUserData.mode)}
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );

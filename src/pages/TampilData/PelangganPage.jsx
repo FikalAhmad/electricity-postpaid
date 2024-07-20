@@ -37,7 +37,7 @@ const PelangganPage = () => {
     <div className="text-sm bg-white m-5 rounded-md w-full relative overflow-hidden">
       <div className="font-semibold text-3xl pt-8 px-8">Data Pelanggan</div>
       <Button
-        className="bg-gray-400 ml-8 mt-3 flex gap-2 justify-center items-center"
+        className="bg-gray-400 ml-8 mt-3 flex gap-2 justify-center items-center rounded-md"
         onClick={() => navigate("/tambahpelanggan")}
       >
         <PlusIcon />
@@ -68,7 +68,7 @@ const PelangganPage = () => {
                   <td className="py-5">{item.tarif.daya}VA</td>
                   <td className="flex gap-5 justify-center items-center py-5">
                     <Button
-                      className="bg-green-700 flex gap-2 justify-center items-center"
+                      className="bg-green-700 flex gap-2 justify-center items-center rounded-md"
                       onClick={() =>
                         navigate(`/editpelanggan/${item.id_pelanggan}`)
                       }
@@ -77,7 +77,7 @@ const PelangganPage = () => {
                       Edit
                     </Button>
                     <Button
-                      className="bg-red-600 flex gap-2 justify-center items-center"
+                      className="bg-red-600 flex gap-2 justify-center items-center rounded-md"
                       onClick={() => handleDelete(item.id_pelanggan)}
                     >
                       <DeleteIcon />

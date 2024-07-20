@@ -37,7 +37,7 @@ const UserPage = () => {
     <div className="text-sm bg-white m-5 rounded-md w-full relative overflow-hidden">
       <div className="font-semibold text-3xl pt-8 px-8">Data User</div>
       <Button
-        className="bg-gray-400 ml-8 mt-3 flex gap-2 justify-center items-center"
+        className="bg-gray-400 ml-8 mt-3 flex gap-2 rounded-md justify-center items-center"
         onClick={() => navigate("/tambahuser")}
       >
         <PlusIcon />
@@ -64,14 +64,14 @@ const UserPage = () => {
                   <td className="py-5">{item.level.nama_level}</td>
                   <td className="flex gap-5 justify-center items-center py-5">
                     <Button
-                      className="bg-green-700 flex gap-2 justify-center items-center"
+                      className="bg-green-700 flex gap-2 justify-center items-center rounded-md"
                       onClick={() => navigate(`/edituser/${item.id_user}`)}
                     >
                       <EditIcon />
                       Edit
                     </Button>
                     <Button
-                      className="bg-red-600 flex gap-2 justify-center items-center"
+                      className="bg-red-600 flex gap-2 justify-center items-center rounded-md"
                       onClick={() => handleDelete(item.id_user)}
                     >
                       <DeleteIcon />

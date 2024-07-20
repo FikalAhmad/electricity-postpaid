@@ -1,3 +1,8 @@
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const PlusIcon = () => {
   return (
     <svg
@@ -26,6 +31,11 @@ export const PlusIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const DeleteIcon = () => {
   return (
     <svg
@@ -64,6 +74,11 @@ export const DeleteIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const EditIcon = () => {
   return (
     <svg
@@ -91,6 +106,11 @@ export const EditIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const DashboardIcon = () => {
   return (
     <svg
@@ -125,6 +145,11 @@ export const DashboardIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const UserIcon = () => {
   return (
     <svg
@@ -151,6 +176,11 @@ export const UserIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const SearchIcon = () => {
   return (
     <svg
@@ -178,6 +208,11 @@ export const SearchIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const LeftArrow = () => {
   return (
     <svg
@@ -199,6 +234,11 @@ export const LeftArrow = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const TarifIcon = () => {
   return (
     <svg
@@ -257,6 +297,11 @@ export const TarifIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const PelangganIcon = () => {
   return (
     <svg
@@ -295,6 +340,11 @@ export const PelangganIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const PenggunaanIcon = () => {
   return (
     <svg
@@ -342,6 +392,11 @@ export const PenggunaanIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const PembayaranIcon = () => {
   return (
     <svg
@@ -372,6 +427,11 @@ export const PembayaranIcon = () => {
   );
 };
 
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
 export const TagihanIcon = () => {
   return (
     <svg
@@ -425,6 +485,46 @@ export const TagihanIcon = () => {
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
+      />
+    </svg>
+  );
+};
+
+/**
+ * ${1:Description placeholder}
+ *
+ * @returns {${2:*}}
+ */
+export const HistoryIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={20}
+      height={20}
+      color={"#202024"}
+      fill={"none"}
+    >
+      <path
+        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C7.52232 2 3.77426 4.94289 2.5 9H5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 8V12L14 14"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M2 12C2 12.3373 2.0152 12.6709 2.04494 13M9 22C8.6584 21.8876 8.32471 21.7564 8 21.6078M3.20939 17C3.01655 16.6284 2.84453 16.2433 2.69497 15.8462M4.83122 19.3065C5.1369 19.6358 5.46306 19.9441 5.80755 20.2292"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

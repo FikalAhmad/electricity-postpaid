@@ -9,7 +9,7 @@ const PenggunaanPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/penggunaan", {
+      const response = await fetch("http://localhost:3000/pelanggan", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -45,19 +45,21 @@ const PenggunaanPage = () => {
               return (
                 <tr key={index + 1} className="border-b-2">
                   <td className="py-5">{index + 1}</td>
-                  <td className="py-5">{item.pelanggan.nama_pelanggan}</td>
-                  <td className="py-5">{item.pelanggan.nomor_kwh}</td>
-                  <td className="py-5">{item.pelanggan.alamat}</td>
+                  <td className="py-5">{item.nama_pelanggan}</td>
+                  <td className="py-5">{item.nomor_kwh}</td>
+                  <td className="py-5">{item.alamat}</td>
                   <td className="flex gap-3 justify-center items-center py-5">
                     <Button
-                      className="bg-gray-400 flex gap-1 justify-center items-center"
-                      onClick={() => navigate(`/tambahpenggunaan`)}
+                      className="bg-gray-400 flex gap-1 justify-center items-center rounded-md"
+                      onClick={() =>
+                        navigate(`/tambahpenggunaan/${item.id_pelanggan}`)
+                      }
                     >
                       <PlusIcon />
                       Tambah Penggunaan
                     </Button>
                     <Button
-                      className="bg-green-700 flex gap-1 justify-center items-center"
+                      className="bg-green-700 flex gap-1 justify-center items-center rounded-md"
                       onClick={() =>
                         navigate(`/detailpenggunaan/${item.id_pelanggan}`)
                       }
@@ -66,7 +68,7 @@ const PenggunaanPage = () => {
                       Lihat Penggunaan
                     </Button>
                     <Button
-                      className="bg-green-700 flex gap-1 justify-center items-center"
+                      className="bg-green-700 flex gap-1 justify-center items-center rounded-md"
                       onClick={() =>
                         navigate(`/tagihanpelanggan/${item.id_pelanggan}`)
                       }

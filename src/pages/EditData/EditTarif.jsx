@@ -70,13 +70,16 @@ const EditTarif = () => {
             </div>
             <div className="flex justify-center gap-3 mt-5">
               <Button
-                className="bg-green-700 flex gap-2 justify-center items-center"
+                className="bg-green-700 flex gap-2 justify-center items-center rounded-md"
                 type="submit"
               >
                 <EditIcon />
                 Ubah
               </Button>
-              <Button className="bg-red-600" onClick={() => navigate("/tarif")}>
+              <Button
+                className="bg-red-600 rounded-md"
+                onClick={() => navigate("/tarif")}
+              >
                 Cancel
               </Button>
             </div>

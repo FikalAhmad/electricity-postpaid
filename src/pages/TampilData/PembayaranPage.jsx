@@ -30,8 +30,6 @@ const PembayaranPage = () => {
     });
     await location.reload();
   };
-  console.log(pembayaranData);
-
   return (
     <div className="text-sm bg-white m-5 rounded-md w-full relative overflow-hidden">
       <div className="font-semibold text-3xl pt-8 px-8">Data Pembayaran</div>
@@ -48,34 +46,38 @@ const PembayaranPage = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody className="">
-            {pembayaranData.map((item, index) => {
-              return (
-                <tr key={index + 1} className="border-b-2">
-                  <td className="py-5">{index + 1}</td>
-                  <td className="py-5">{item.pelanggan.nomor_kwh}</td>
-                  <td className="py-5">{item.pelanggan.nama_pelanggan}</td>
-                  <td className="py-5">{item.tagihan.bulan}</td>
-                  <td className="py-5">Rp. {item.total_bayar}</td>
-                  <td className="py-5">
-                    {item.tagihan.status ? (
-                      <Button className="bg-green-700">Sudah dibayar</Button>
-                    ) : (
-                      <Button className="bg-red-600">Belum Dibayar</Button>
-                    )}
-                  </td>
-                  <td className="flex gap-5 justify-center items-center py-5">
-                    <Button
-                      className="bg-red-600 flex gap-2 justify-center items-center"
-                      onClick={() => handleDelete(item.id_tarif)}
-                    >
-                      <DeleteIcon />
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
+          <tbody>
+            {pembayaranData
+              .filter((pembayaran) => {
+                return pembayaran.tagihan.status === false;
+              })
+              .map((item, index) => {
+                return (
+                  <tr key={index + 1} className="border-b-2">
+                    <td className="py-5">{index + 1}</td>
+                    <td className="py-5">{item.pelanggan.nomor_kwh}</td>
+                    <td className="py-5">{item.pelanggan.nama_pelanggan}</td>
+                    <td className="py-5">{item.tagihan.bulan}</td>
+                    <td className="py-5">Rp. {item.total_bayar}</td>
+                    <td className="py-5">
+                      {item.tagihan.status == false ? (
+                        <Button className="bg-red-600 rounded-md">
+                          Belum Dibayar
+                        </Button>
+                      ) : null}
+                    </td>
+                    <td className="flex gap-5 justify-center items-center py-5">
+                      <Button
+                        className="bg-red-600 flex gap-2 justify-center items-center rounded-md"
+                        onClick={() => handleDelete(item.id_tarif)}
+                      >
+                        <DeleteIcon />
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
