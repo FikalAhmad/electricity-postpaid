@@ -7,15 +7,13 @@ import { useNavigate } from "react-router-dom";
  * @component
  */
 const TambahUser = () => {
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
   const [nama, setNama] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(0);
 
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   /**
@@ -28,6 +26,7 @@ const TambahUser = () => {
     await fetch("http://localhost:3000/user", {
       headers: {
         "Content-Type": "application/json",
+        "X-User-Id": idUser,
       },
       method: "POST",
       body: JSON.stringify({

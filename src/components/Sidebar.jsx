@@ -19,10 +19,7 @@ const Sidebar = () => {
    */
   const storedUserData = JSON.parse(localStorage.getItem("userLogin"));
 
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   /**

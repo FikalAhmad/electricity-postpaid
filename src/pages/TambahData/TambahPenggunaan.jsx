@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
  */
 const TambahPenggunaan = () => {
   const { pelangganId } = useParams();
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
   const [pelanggan, setPelanggan] = useState(0);
   const [bulan, setBulan] = useState("");
   const [tahun, setTahun] = useState("");
@@ -15,10 +16,7 @@ const TambahPenggunaan = () => {
   const [meterAkhir, setMeterAkhir] = useState();
   const [dataPelanggan, setDataPelanggan] = useState([]);
 
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,6 +32,7 @@ const TambahPenggunaan = () => {
       const response = await fetch("http://localhost:3000/pelanggan", {
         headers: {
           "Content-Type": "application/json",
+          "X-User-Id": idUser,
         },
         method: "GET",
       });
@@ -47,7 +46,7 @@ const TambahPenggunaan = () => {
     };
 
     fetchData();
-  }, [pelangganId]);
+  }, [pelangganId, idUser]);
 
   /**
    * Menangani proses tambah data penggunaan ketika formulir dikirimkan.
@@ -59,6 +58,7 @@ const TambahPenggunaan = () => {
     await fetch("http://localhost:3000/penggunaan", {
       headers: {
         "Content-Type": "application/json",
+        "X-User-Id": idUser,
       },
       method: "POST",
       body: JSON.stringify({

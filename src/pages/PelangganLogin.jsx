@@ -20,10 +20,7 @@ const PelangganLogin = () => {
   });
   const [message, setMessage] = useState("");
 
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   /**

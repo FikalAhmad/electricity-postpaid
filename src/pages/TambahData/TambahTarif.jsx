@@ -9,11 +9,9 @@ import { useNavigate } from "react-router-dom";
 const TambahTarif = () => {
   const [daya, setDaya] = useState();
   const [tarifperkwh, setTarifperkwh] = useState();
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
 
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   /**
@@ -26,6 +24,7 @@ const TambahTarif = () => {
     await fetch("http://localhost:3000/tarif", {
       headers: {
         "Content-Type": "application/json",
+        "X-User-Id": idUser,
       },
       method: "POST",
       body: JSON.stringify({

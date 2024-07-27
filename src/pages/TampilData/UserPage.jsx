@@ -9,10 +9,8 @@ import { DeleteIcon, EditIcon, PlusIcon } from "../../components/Icons.jsx";
  */
 const UserPage = () => {
   const [userData, setUserData] = useState([]);
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +26,7 @@ const UserPage = () => {
       const response = await fetch("http://localhost:3000/user", {
         headers: {
           "Content-Type": "application/json",
+          "X-User-Id": idUser,
         },
         method: "GET",
       });
@@ -40,7 +39,7 @@ const UserPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [idUser]);
 
   /**
    * Menangani proses delete data user by id ketika formulir dikirimkan.
@@ -49,6 +48,7 @@ const UserPage = () => {
    */
   const handleDelete = async (userId) => {
     await fetch(`http://localhost:3000/user/${userId}`, {
+      headers: { "X-User-Id": idUser },
       method: "DELETE",
     });
     await location.reload();
@@ -65,45 +65,49 @@ const UserPage = () => {
         Tambah Data
       </Button>
       <div className="m-10 h-[550px] overflow-x-hidden overflow-y-auto">
-        <table className="w-full border-collapse text-center">
-          <thead className="w-full bg-white">
-            <tr className="border-b-2">
-              <th>No</th>
-              <th>Username</th>
-              <th>Nama Admin</th>
-              <th>Nama Level</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userData.map((item, index) => {
-              return (
-                <tr key={index + 1} className="border-b-2">
-                  <td className="py-5">{index + 1}</td>
-                  <td className="py-5">{item.username}</td>
-                  <td className="py-5">{item.nama_admin}</td>
-                  <td className="py-5">{item.level.nama_level}</td>
-                  <td className="flex gap-5 justify-center items-center py-5">
-                    <Button
-                      className="bg-green-700 flex gap-2 justify-center items-center rounded-md"
-                      onClick={() => navigate(`/edituser/${item.id_user}`)}
-                    >
-                      <EditIcon />
-                      Edit
-                    </Button>
-                    <Button
-                      className="bg-red-600 flex gap-2 justify-center items-center rounded-md"
-                      onClick={() => handleDelete(item.id_user)}
-                    >
-                      <DeleteIcon />
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {userData.length <= 0 ? (
+          <div className="flex justify-center text-lg">Belum ada user</div>
+        ) : (
+          <table className="w-full border-collapse text-center">
+            <thead className="w-full bg-white">
+              <tr className="border-b-2">
+                <th>No</th>
+                <th>Username</th>
+                <th>Nama Admin</th>
+                <th>Nama Level</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userData.map((item, index) => {
+                return (
+                  <tr key={index + 1} className="border-b-2">
+                    <td className="py-5">{index + 1}</td>
+                    <td className="py-5">{item.username}</td>
+                    <td className="py-5">{item.nama_admin}</td>
+                    <td className="py-5">{item.level.nama_level}</td>
+                    <td className="flex gap-5 justify-center items-center py-5">
+                      <Button
+                        className="bg-green-700 flex gap-2 justify-center items-center rounded-md"
+                        onClick={() => navigate(`/edituser/${item.id_user}`)}
+                      >
+                        <EditIcon />
+                        Edit
+                      </Button>
+                      <Button
+                        className="bg-red-600 flex gap-2 justify-center items-center rounded-md"
+                        onClick={() => handleDelete(item.id_user)}
+                      >
+                        <DeleteIcon />
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

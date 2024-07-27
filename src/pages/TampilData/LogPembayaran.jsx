@@ -10,7 +10,7 @@ const LogPelanggan = () => {
   /**
    * pelangganData - untuk mengambil data pelanggan yang login dari localStorage.
    */
-  const pelangganData = JSON.parse(localStorage.getItem("userLogin"));
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
   const [pelangganBayar, setpelangganBayar] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,7 +25,7 @@ const LogPelanggan = () => {
      */
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/pembayaran/${pelangganData.idUser}`,
+        `http://localhost:3000/pembayaran/${idUser}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const LogPelanggan = () => {
     };
 
     fetchData();
-  }, [pelangganData.idUser]);
+  }, [idUser]);
 
   return (
     <div className="text-sm bg-white m-5 rounded-md w-full relative overflow-hidden">

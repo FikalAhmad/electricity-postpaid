@@ -8,6 +8,7 @@ import { PlusIcon } from "../../components/Icons.jsx";
  * @component
  */
 const TambahPelanggan = () => {
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [nomorKwh, setNomorKwh] = useState("");
@@ -17,10 +18,7 @@ const TambahPelanggan = () => {
 
   const [dataDaya, setDataDaya] = useState([]);
 
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,6 +58,7 @@ const TambahPelanggan = () => {
     await fetch("http://localhost:3000/pelanggan", {
       headers: {
         "Content-Type": "application/json",
+        "X-User-Id": idUser,
       },
       method: "POST",
       body: JSON.stringify({
@@ -146,14 +145,14 @@ const TambahPelanggan = () => {
             </div>
             <div className="flex justify-center gap-3 mt-5">
               <Button
-                className="bg-green-700 flex gap-2 justify-center items-center"
+                className="bg-green-700 flex gap-2 rounded-md justify-center items-center"
                 type="submit"
               >
                 <PlusIcon />
                 Tambah
               </Button>
               <Button
-                className="bg-red-600"
+                className="bg-red-600 rounded-md"
                 onClick={() => navigate("/pelanggan")}
               >
                 Cancel

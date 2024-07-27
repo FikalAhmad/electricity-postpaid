@@ -12,6 +12,7 @@ import {
  */
 const DashboardPage = () => {
   const [totalData, setTotalData] = useState([]);
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
   useEffect(() => {
     /**
      * Mengambil data total data dari endpoint API.
@@ -23,6 +24,7 @@ const DashboardPage = () => {
       const response = await fetch("http://localhost:3000/totaldata", {
         headers: {
           "Content-Type": "application/json",
+          "X-User-Id": idUser,
         },
         method: "GET",
       });
@@ -35,7 +37,7 @@ const DashboardPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [idUser]);
   return (
     <div className="grid grid-cols-2 w-full gap-5 place-items-center m-5 rounded-md">
       <div className="flex flex-col gap-3 p-10 rounded-lg w-full h-full bg-white">

@@ -8,18 +8,13 @@ import { EditIcon } from "../../components/Icons.jsx";
  * @component
  */
 const EditTarif = () => {
-  /**
-   * Hook untuk mengambil parameter url.
-   * @type {function}
-   */
+  // Hook untuk mengambil parameter
   const { tarifId } = useParams();
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
   const [daya, setDaya] = useState(0);
   const [tarifperkwh, setTarifperkwh] = useState(0);
 
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,6 +55,7 @@ const EditTarif = () => {
     await fetch(`http://localhost:3000/tarif/${tarifId}`, {
       headers: {
         "Content-Type": "application/json",
+        "X-User-Id": idUser,
       },
       method: "PATCH",
       body: JSON.stringify({

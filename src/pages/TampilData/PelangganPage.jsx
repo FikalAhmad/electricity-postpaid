@@ -10,10 +10,7 @@ import { DeleteIcon, EditIcon, PlusIcon } from "../../components/Icons.jsx";
 const PelangganPage = () => {
   const [pelangganData, setPelangganData] = useState([]);
   const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,6 +48,7 @@ const PelangganPage = () => {
    */
   const handleDelete = async (pelangganId) => {
     await fetch(`http://localhost:3000/pelanggan/${pelangganId}`, {
+      headers: { "X-User-Id": idUser },
       method: "DELETE",
     });
     await location.reload();
@@ -67,51 +65,55 @@ const PelangganPage = () => {
         Tambah Data
       </Button>
       <div className="m-10 h-[550px] overflow-x-hidden overflow-y-auto">
-        <table className="w-full border-collapse text-center">
-          <thead className="w-full bg-white">
-            <tr className="border-b-2">
-              <th>No</th>
-              <th>Username</th>
-              <th>No. Meter</th>
-              <th>Nama Admin</th>
-              <th>Alamat</th>
-              <th>Tarif</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody className="">
-            {pelangganData.map((item, index) => {
-              return (
-                <tr key={index + 1} className="border-b-2">
-                  <td className="py-5">{index + 1}</td>
-                  <td className="py-5">{item.username}</td>
-                  <td className="py-5">{item.nomor_kwh}</td>
-                  <td className="py-5">{item.nama_pelanggan}</td>
-                  <td className="py-5">{item.alamat}</td>
-                  <td className="py-5">{item.tarif.daya}VA</td>
-                  <td className="flex gap-5 justify-center items-center py-5">
-                    <Button
-                      className="bg-green-700 flex gap-2 justify-center items-center rounded-md"
-                      onClick={() =>
-                        navigate(`/editpelanggan/${item.id_pelanggan}`)
-                      }
-                    >
-                      <EditIcon />
-                      Edit
-                    </Button>
-                    <Button
-                      className="bg-red-600 flex gap-2 justify-center items-center rounded-md"
-                      onClick={() => handleDelete(item.id_pelanggan)}
-                    >
-                      <DeleteIcon />
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {pelangganData.length <= 0 ? (
+          <div className="flex justify-center text-lg">Belum ada pelanggan</div>
+        ) : (
+          <table className="w-full border-collapse text-center">
+            <thead className="w-full bg-white">
+              <tr className="border-b-2">
+                <th>No</th>
+                <th>Username</th>
+                <th>No. Meter</th>
+                <th>Nama Admin</th>
+                <th>Alamat</th>
+                <th>Tarif</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody className="">
+              {pelangganData.map((item, index) => {
+                return (
+                  <tr key={index + 1} className="border-b-2">
+                    <td className="py-5">{index + 1}</td>
+                    <td className="py-5">{item.username}</td>
+                    <td className="py-5">{item.nomor_kwh}</td>
+                    <td className="py-5">{item.nama_pelanggan}</td>
+                    <td className="py-5">{item.alamat}</td>
+                    <td className="py-5">{item.tarif.daya}VA</td>
+                    <td className="flex gap-5 justify-center items-center py-5">
+                      <Button
+                        className="bg-green-700 flex gap-2 justify-center items-center rounded-md"
+                        onClick={() =>
+                          navigate(`/editpelanggan/${item.id_pelanggan}`)
+                        }
+                      >
+                        <EditIcon />
+                        Edit
+                      </Button>
+                      <Button
+                        className="bg-red-600 flex gap-2 justify-center items-center rounded-md"
+                        onClick={() => handleDelete(item.id_pelanggan)}
+                      >
+                        <DeleteIcon />
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

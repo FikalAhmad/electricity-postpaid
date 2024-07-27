@@ -8,20 +8,15 @@ import { EditIcon } from "../../components/Icons.jsx";
  * @component
  */
 const EditUser = () => {
-  /**
-   * Hook untuk mengambil parameter url.
-   * @type {function}
-   */
+  // Hook untuk mengambil parameter
   const { userId } = useParams();
+  const { idUser } = JSON.parse(localStorage.getItem("userLogin"));
   const [nama, setNama] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(0);
 
-  /**
-   * Hook untuk navigasi.
-   * @type {function}
-   */
+  // Hook untuk navigasi
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,6 +59,7 @@ const EditUser = () => {
     await fetch(`http://localhost:3000/user/${userId}`, {
       headers: {
         "Content-Type": "application/json",
+        "X-User-Id": idUser,
       },
       method: "PATCH",
       body: JSON.stringify({

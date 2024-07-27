@@ -1,11 +1,12 @@
 /**
- * ${1:Description placeholder}
+ * Modal component - Komponen modal untuk membuat popup/dialog untuk konfirmasi.
  *
- * @param {{ show: any; onClose: any; onConfirm: any; }} param0
- * @param {${2:*}} param0.show
- * @param {${3:*}} param0.onClose
- * @param {${4:*}} param0.onConfirm
- * @returns {${5:*}\}
+ * @param {object} props - Komponen properti.
+ * @param {string} props.show - Kelas CSS tambahan untuk button.
+ * @param {function} props.onClose - Fungsi yang dipanggil saat button diklik.
+ * @param {string} props.onConfirm - Jenis button (e.g., "button", "submit").
+ *
+ * @returns {JSX.Element} Komponen button yang sudah diatur.
  */
 const Modal = ({ show, onClose, onConfirm }) => {
   if (!show) return null;

@@ -1,0 +1,29 @@
+{
+  "source": {
+    "include": ["./src"],
+    "includePattern": ".jsx$",
+    "excludePattern": "(node_modules|docs|Icons.jsx)"
+  },
+  "opts": {
+    "destination": "./docs",
+    "recurse": true,
+    "verbose": true,
+    "readme": "./README.md",
+    "template": "node_modules/docdash"
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "docdash": {
+    "static": true,
+    "sort": true,
+    "search": true,
+    "collapse": true,
+    "typedefs": true,
+    "removeQuotes": "none",
+    "title": "KALECTRO",
+    "description": "Website pembayaran listrik prabayar."
+  }
+}
