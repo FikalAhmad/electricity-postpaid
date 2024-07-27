@@ -1,27 +1,58 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import Button from "../Button";
+import { BrowserRouter as Router } from "react-router-dom";
+import Sidebar from "../Sidebar";
 
-describe("Sidebar Component", () => {
-  test("renders with correct text", () => {
-    render(<Button>Click Me</Button>);
-    expect(screen.getByText(/Click Me/i)).toBeInTheDocument();
+// Mock data untuk localStorage
+const mockUserData = {
+  mode: "Pelanggan",
+  namaUser: "John Doe",
+};
+
+// Mock localStorage
+beforeEach(() => {
+  jest
+    .spyOn(Storage.prototype, "getItem")
+    .mockImplementation(() => JSON.stringify(mockUserData));
+  jest.spyOn(Storage.prototype, "removeItem").mockImplementation(() => {});
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
+describe("Sidebar", () => {
+  test("renders the sidebar and shows appropriate links based on user mode", () => {
+    render(
+      <Router>
+        <Sidebar />
+      </Router>
+    );
+
+    // Verifikasi elemen navigasi untuk mode "Pelanggan"
+    expect(screen.getByText(/Bayar Tagihan/i)).toBeInTheDocument();
+    expect(screen.getByText(/Log Pembayaran/i)).toBeInTheDocument();
+
+    // Elemen navigasi lain yang seharusnya tidak ada dalam mode "Pelanggan"
+    expect(screen.queryByText(/Dashboard/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Data User/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Data Tarif/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Data Pelanggan/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Data Penggunaan/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Data Pembayaran/i)).not.toBeInTheDocument();
   });
 
-  test("applies className correctly", () => {
-    render(<Button className="bg-blue-500">Click Me</Button>);
-    expect(screen.getByText(/Click Me/i)).toHaveClass("bg-blue-500");
-    expect(screen.getByText(/Click Me/i)).toHaveClass("px-4 py-2 text-white");
-  });
+  test("handles logout correctly", () => {
+    render(
+      <Router>
+        <Sidebar />
+      </Router>
+    );
 
-  test("calls onClick handler when clicked", () => {
-    const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Click Me</Button>);
-    fireEvent.click(screen.getByText(/Click Me/i));
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
+    // Temukan tombol logout dan klik
+    const logoutButton = screen.getByText(/Logout/i);
+    fireEvent.click(logoutButton);
 
-  test("sets the button type correctly", () => {
-    render(<Button type="submit">Submit</Button>);
-    expect(screen.getByText(/Submit/i)).toHaveAttribute("type", "submit");
+    // Verifikasi bahwa localStorage.removeItem dipanggil dengan benar
+    expect(localStorage.removeItem).toHaveBeenCalledWith("userLogin");
   });
 });
