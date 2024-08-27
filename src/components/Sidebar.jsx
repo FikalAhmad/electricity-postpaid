@@ -32,12 +32,12 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="min-w-80 h-screen bg-white text-black p-7">
-      <div className="text-4xl font-bold mb-10 flex justify-center">
-        <div className="text-yellow-400">KAL</div>
-        <div className="text-blue-400">ECTRIC</div>
-      </div>
-      <div className="flex flex-col items-center justify-between min-h-[660px]">
+    <div className="min-w-80 h-screen bg-white text-black p-7 flex flex-col justify-between">
+      <div className="flex flex-col items-center justify-between">
+        <div className="text-4xl font-bold mb-10 flex justify-center">
+          <div className="text-yellow-400">KAL</div>
+          <div className="text-blue-400">ECTRIC</div>
+        </div>
         <ul className="flex flex-col gap-5 w-full">
           {storedUserData.mode == "Pelanggan" ? (
             <>
@@ -151,18 +151,18 @@ const Sidebar = () => {
             </>
           )}
         </ul>
-        <div className="flex flex-col w-full gap-3">
-          <div className="px-4 py-2 rounded-md shadow-md bg-[#ECEDF0] flex flex-col justify-center items-center">
-            Selamat Datang
-            <div className="font-bold">{storedUserData.namaUser}</div>
-          </div>
-          <button
-            className="px-4 py-2 rounded-md shadow-md bg-[#ECEDF0] flex justify-center"
-            onClick={() => handleLogout(storedUserData.mode)}
-          >
-            Logout
-          </button>
+      </div>
+      <div className="flex flex-col w-full gap-3">
+        <div className="px-4 py-2 rounded-md shadow-md bg-[#ECEDF0] flex flex-col justify-center items-center">
+          Selamat Datang
+          <div className="font-bold">{storedUserData.namaUser}</div>
         </div>
+        <button
+          className="px-4 py-2 rounded-md shadow-md bg-[#ECEDF0] flex justify-center"
+          onClick={() => handleLogout(storedUserData.mode)}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );
