@@ -26,7 +26,7 @@ const DetailPenggunaan = () => {
      */
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/detailpenggunaan/${pelangganId}`,
+        `${import.meta.env.VITE_API_URL}detailpenggunaan/${pelangganId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const DetailPenggunaan = () => {
    * @param {String} penggunaanId - menerima string id penggunaan.
    */
   const handleDelete = async (penggunaanId) => {
-    await fetch(`http://localhost:3000/penggunaan/${penggunaanId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}penggunaan/${penggunaanId}`, {
       headers: { "X-User-Id": idUser },
       method: "DELETE",
     });

@@ -25,7 +25,7 @@ const PelangganBayar = () => {
      */
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/pembayaran/${idUser}`,
+        `${import.meta.env.VITE_API_URL}pembayaran/${idUser}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const PelangganBayar = () => {
    * @param {String} tagihanId - menerima string id tagihan.
    */
   const handleBayar = async (tagihanId) => {
-    await fetch(`http://localhost:3000/tagihan/${tagihanId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}tagihan/${tagihanId}`, {
       headers: {
         "Content-Type": "application/json",
         "X-User-Id": idUser,

@@ -29,12 +29,15 @@ const EditUser = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:3000/user/${userId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "GET",
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}user/${userId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "GET",
+        }
+      );
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
@@ -56,7 +59,7 @@ const EditUser = () => {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:3000/user/${userId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}user/${userId}`, {
       headers: {
         "Content-Type": "application/json",
         "X-User-Id": idUser,

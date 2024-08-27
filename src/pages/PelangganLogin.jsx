@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /**
  * Komponen PelangganLogin untuk menangani proses login pelanggan dan menampilkan halaman login sebagai pelanggan.
@@ -15,8 +15,8 @@ const PelangganLogin = () => {
     JSON.stringify({ isLogin: false, mode: "Pelanggan" })
   );
   const [userLogin, setUserLogin] = useState({
-    username: "",
-    password: "",
+    username: "pelanggan",
+    password: "pelanggan",
   });
   const [message, setMessage] = useState("");
 
@@ -30,7 +30,7 @@ const PelangganLogin = () => {
    */
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}login`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -115,6 +115,9 @@ const PelangganLogin = () => {
           <Button className="bg-gray-800 w-full rounded-full" type="submit">
             Login
           </Button>
+        </div>
+        <div className="text-sm text-center mt-5 underline hover:text-gray-500">
+          <Link to={"/admin/login"}>Login sebagai admin</Link>
         </div>
       </form>
     </div>

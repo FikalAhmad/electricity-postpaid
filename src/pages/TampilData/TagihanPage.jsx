@@ -25,7 +25,7 @@ const TagihanPage = () => {
      */
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/tagihanpelanggan/${pelangganId}`,
+        `${import.meta.env.VITE_API_URL}tagihanpelanggan/${pelangganId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const TagihanPage = () => {
    * @param {String} tagihanId - menerima string id penggunaan.
    */
   const handleDelete = async (tagihanId) => {
-    await fetch(`http://localhost:3000/tagihan/${tagihanId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}tagihan/${tagihanId}`, {
       headers: { "X-User-Id": idUser },
       method: "DELETE",
     });

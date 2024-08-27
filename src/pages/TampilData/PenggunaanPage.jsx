@@ -22,7 +22,7 @@ const PenggunaanPage = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/pelanggan", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}pelanggan`, {
         headers: {
           "Content-Type": "application/json",
           "X-User-Id": idUser,

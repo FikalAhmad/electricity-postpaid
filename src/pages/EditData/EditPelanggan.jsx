@@ -34,7 +34,7 @@ const EditPelanggan = () => {
      */
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/pelanggan/${pelangganId}`,
+        `${import.meta.env.VITE_API_URL}pelanggan/${pelangganId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const EditPelanggan = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const tarifData = async () => {
-      const response = await fetch("http://localhost:3000/tarif", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}tarif`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -88,7 +88,7 @@ const EditPelanggan = () => {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:3000/pelanggan/${pelangganId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}pelanggan/${pelangganId}`, {
       headers: {
         "Content-Type": "application/json",
         "X-User-Id": idUser,

@@ -31,7 +31,7 @@ const TambahPelanggan = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/tarif", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}tarif`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -55,7 +55,7 @@ const TambahPelanggan = () => {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:3000/pelanggan", {
+    await fetch(`${import.meta.env.VITE_API_URL}pelanggan`, {
       headers: {
         "Content-Type": "application/json",
         "X-User-Id": idUser,

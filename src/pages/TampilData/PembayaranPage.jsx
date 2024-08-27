@@ -20,13 +20,16 @@ const PembayaranPage = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/pembayaran", {
-        headers: {
-          "Content-Type": "application/json",
-          "X-User-Id": idUser,
-        },
-        method: "GET",
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}pembayaran`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Id": idUser,
+          },
+          method: "GET",
+        }
+      );
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
@@ -44,7 +47,7 @@ const PembayaranPage = () => {
    * @param {String} tarifId - menerima string id tarif.
    */
   const handleDelete = async (tarifId) => {
-    await fetch(`http://localhost:3000/tarif/${tarifId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}tarif/${tarifId}`, {
       headers: { "X-User-Id": idUser },
       method: "DELETE",
     });

@@ -21,7 +21,7 @@ const TambahTarif = () => {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:3000/tarif", {
+    await fetch(`${import.meta.env.VITE_API_URL}tarif`, {
       headers: {
         "Content-Type": "application/json",
         "X-User-Id": idUser,

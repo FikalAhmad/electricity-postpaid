@@ -23,7 +23,7 @@ const TarifPage = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/tarif", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}tarif`, {
         headers: {
           "Content-Type": "application/json",
           "X-User-Id": idUser,
@@ -47,7 +47,7 @@ const TarifPage = () => {
    * @param {String} tarifId - menerima string id tarif.
    */
   const handleDelete = async (tarifId) => {
-    await fetch(`http://localhost:3000/tarif/${tarifId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}tarif/${tarifId}`, {
       headers: { "X-User-Id": idUser },
       method: "DELETE",
     });

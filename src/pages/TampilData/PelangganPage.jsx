@@ -23,7 +23,7 @@ const PelangganPage = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/pelanggan", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}pelanggan`, {
         headers: {
           "Content-Type": "application/json",
           "X-User-Id": idUser,
@@ -47,7 +47,7 @@ const PelangganPage = () => {
    * @param {String} pelangganId - menerima string id pelanggan.
    */
   const handleDelete = async (pelangganId) => {
-    await fetch(`http://localhost:3000/pelanggan/${pelangganId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}pelanggan/${pelangganId}`, {
       headers: { "X-User-Id": idUser },
       method: "DELETE",
     });

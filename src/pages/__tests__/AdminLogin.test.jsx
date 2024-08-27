@@ -68,16 +68,19 @@ describe("AdminLogin Component", () => {
     fireEvent.click(loginButton);
 
     await waitFor(() => {
-      expect(fetch).toHaveBeenCalledWith("http://localhost:3000/admin/login", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          username: "admin",
-          password: "password",
-        }),
-      });
+      expect(fetch).toHaveBeenCalledWith(
+        "${import.meta.env.VITE_API_URL}admin/login",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify({
+            username: "admin",
+            password: "password",
+          }),
+        }
+      );
     });
 
     await waitFor(() => {
@@ -105,16 +108,19 @@ describe("AdminLogin Component", () => {
     fireEvent.click(loginButton);
 
     await waitFor(() => {
-      expect(fetch).toHaveBeenCalledWith("http://localhost:3000/admin/login", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          username: "wronguser",
-          password: "wrongpassword",
-        }),
-      });
+      expect(fetch).toHaveBeenCalledWith(
+        "${import.meta.env.VITE_API_URL}admin/login",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify({
+            username: "wronguser",
+            password: "wrongpassword",
+          }),
+        }
+      );
     });
 
     await waitFor(() => {

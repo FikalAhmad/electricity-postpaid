@@ -23,7 +23,7 @@ const UserPage = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/user", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}user`, {
         headers: {
           "Content-Type": "application/json",
           "X-User-Id": idUser,
@@ -47,7 +47,7 @@ const UserPage = () => {
    * @param {String} userId - menerima string id user.
    */
   const handleDelete = async (userId) => {
-    await fetch(`http://localhost:3000/user/${userId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}user/${userId}`, {
       headers: { "X-User-Id": idUser },
       method: "DELETE",
     });

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /**
  * Komponen AdminLogin untuk menangani proses login user dan menampilkan halaman login sebagai user.
@@ -15,8 +15,8 @@ const AdminLogin = () => {
     JSON.stringify({ isLogin: false, mode: "Admin" })
   );
   const [userLogin, setUserLogin] = useState({
-    username: "",
-    password: "",
+    username: "admin",
+    password: "admin",
   });
   const [message, setMessage] = useState("");
 
@@ -30,7 +30,7 @@ const AdminLogin = () => {
    */
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/admin/login", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}admin/login`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -115,6 +115,9 @@ const AdminLogin = () => {
           <Button className="bg-gray-800 w-full rounded-full" type="submit">
             Login
           </Button>
+        </div>
+        <div className="text-sm text-center mt-5 underline hover:text-gray-500">
+          <Link to={"/login"}>Login sebagai pelanggan</Link>
         </div>
       </form>
     </div>

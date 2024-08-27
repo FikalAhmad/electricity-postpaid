@@ -25,7 +25,7 @@ const LogPelanggan = () => {
      */
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/pembayaran/${idUser}`,
+        `${import.meta.env.VITE_API_URL}pembayaran/${idUser}`,
         {
           headers: {
             "Content-Type": "application/json",

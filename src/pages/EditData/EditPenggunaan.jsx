@@ -32,7 +32,7 @@ const EditPenggunaan = () => {
      */
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/penggunaan/${penggunaanId}`,
+        `${import.meta.env.VITE_API_URL}penggunaan/${penggunaanId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const EditPenggunaan = () => {
      * @throws {Error} Jika status respons tidak OK.
      */
     const pelangganData = async () => {
-      const response = await fetch("http://localhost:3000/pelanggan", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}pelanggan`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -86,7 +86,7 @@ const EditPenggunaan = () => {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:3000/penggunaan/${penggunaanId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}penggunaan/${penggunaanId}`, {
       headers: {
         "Content-Type": "application/json",
         "X-User-Id": idUser,
